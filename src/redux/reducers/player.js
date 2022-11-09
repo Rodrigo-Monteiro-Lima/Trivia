@@ -11,7 +11,7 @@ const initialState = {
   isFetching: false,
   name: '',
   assertions: '',
-  score: '',
+  score: 0,
   gravatarEmail: '',
 
 };
