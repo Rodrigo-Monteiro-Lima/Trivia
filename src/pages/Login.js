@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import getToken from '../services/tokenAPI'
+import { login } from '../redux/actions';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor() {
@@ -32,10 +34,12 @@ class Login extends Component {
   };
 
   playButton = async () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { email, name } = this.state;
     const gotToken = await getToken();
 
     localStorage.setItem('token', gotToken);
+    dispatch(login(email, name))
 
     history.push('/Game');
   };
@@ -79,4 +83,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null)(Login);

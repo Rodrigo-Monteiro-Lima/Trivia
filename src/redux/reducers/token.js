@@ -9,7 +9,7 @@ const token = (state = initialState, action) => {
   case SUCCESS_REQUEST_TOKEN:
     return {
       ...state,
-      token: action.token,
+      token: action.data,
     };
   default:
     return state;
