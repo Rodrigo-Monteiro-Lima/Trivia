@@ -4,7 +4,7 @@ const initialState = {
   token: '',
 };
 
-const userReducer = (state = initialState, action) => {
+const token = (state = initialState, action) => {
   switch (action.type) {
   case SUCCESS_REQUEST_TOKEN:
     return {
@@ -16,4 +16,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default token;
