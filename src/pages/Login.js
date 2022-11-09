@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getToken from '../services/tokenAPI'
-import { login } from '../redux/actions';
 import { connect } from 'react-redux';
-
+import getToken from '../services/tokenAPI';
+import { login } from '../redux/actions';
 
 class Login extends Component {
   constructor() {
@@ -41,7 +40,7 @@ class Login extends Component {
     const gotToken = await getToken();
 
     localStorage.setItem('token', gotToken);
-    dispatch(login(email, name))
+    dispatch(login(email, name));
 
     history.push('/Game');
   };
@@ -97,6 +96,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(null)(Login);
