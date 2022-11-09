@@ -60,7 +60,6 @@ class Login extends Component {
           type="button"
           data-testid="btn-play"
           disabled={ isBtnDisabled }
-          onClick={ () => this.handleClick(email, name) }
         >
           Play
         </button>
