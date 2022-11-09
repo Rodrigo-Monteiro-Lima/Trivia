@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import getToken from '../services/tokenAPI'
 import { login } from '../redux/actions';
 import { connect } from 'react-redux';
+
 
 class Login extends Component {
   constructor() {
@@ -46,6 +48,7 @@ class Login extends Component {
 
   render() {
     const { name, email, isBtnDisabled } = this.state;
+    const { history } = this.props;
     return (
       <form action="">
         <label htmlFor="name">
@@ -74,13 +77,26 @@ class Login extends Component {
           type="button"
           data-testid="btn-play"
           disabled={ isBtnDisabled }
-          onClick={this.playButton}
+          onClick={ this.playButton }
         >
           Play
+        </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ () => history.push('/settings') }
+        >
+          Configurações
         </button>
       </form>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default connect(null)(Login);
