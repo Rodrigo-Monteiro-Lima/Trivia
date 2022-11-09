@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import getToken from '../services/tokenAPI'
 
 class Login extends Component {
   constructor() {
@@ -28,6 +29,15 @@ class Login extends Component {
         isBtnDisabled: true,
       });
     }
+  };
+
+  playButton = async () => {
+    const { history } = this.props;
+    const gotToken = await getToken();
+
+    localStorage.setItem('token', gotToken);
+
+    history.push('/Game');
   };
 
   render() {
@@ -60,11 +70,11 @@ class Login extends Component {
           type="button"
           data-testid="btn-play"
           disabled={ isBtnDisabled }
+          onClick={this.playButton}
         >
           Play
         </button>
       </form>
-
     );
   }
 }
