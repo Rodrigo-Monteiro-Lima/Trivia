@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { fetchQuestions, checkAnswer } from '../redux/actions';
+import { fetchQuestions, checkAnswer, nextQuestion } from '../redux/actions';
 import getQuestions from '../services/questionsAPI';
 import './Game.css';
 
@@ -14,6 +14,8 @@ class Game extends React.Component {
       round: 0,
       questions: [],
       fetching: true,
+      isBtnDisable: false,
+      // randomAnswers: [],
     };
   }
 
@@ -29,6 +31,7 @@ class Game extends React.Component {
       questions: questions.results,
       fetching: false,
     });
+    // this.randomize();
     fecthAPI(token);
   }
 
@@ -36,6 +39,59 @@ class Game extends React.Component {
   //   const { history } = this.props;
   //   localStorage.removeItem('token');
   //   history.push('/');
+  // };
+
+  handleNext = () => {
+    const { next } = this.props;
+    this.setState((estadoAnterior) => ({
+      round: estadoAnterior.round + 1,
+    }), this.validation);
+    next();
+  };
+
+  validation = () => {
+    const { round, questions } = this.state;
+    if (round === questions.length - 1) {
+      this.setState({
+        isBtnDisable: true,
+      });
+    } else {
+      this.setState({ isBtnDisable: false });
+    }
+  };
+
+  // randomize = () => {
+  //   const { questions } = this.state;
+  //   const answers = questions.map((question) => {
+  //     const wrongAnwswers = question.incorrect_answers;
+  //     const rightAnswer = question.correct_answer;
+  //     const wrongButtons = wrongAnwswers.map((answer, i) => (
+  //       <button
+  //         type="button"
+  //         key={ i }
+  //         data-testid={ `wrong-answer${i}` }
+  //         onClick={ () => this.onSelectQuestion(answer) }
+  //         className={ `${selectedAnswer && rightAnswer !== answer ? 'wrong' : ''}` }
+  //       >
+  //         {answer}
+  //       </button>
+  //     ));
+  //     const rightButton = (
+  //       <button
+  //         type="button"
+  //         key={ wrongAnwswers.length }
+  //         data-testid="correct-answer"
+  //         onClick={ () => this.onSelectQuestion(rightAnswer) }
+  //         className={ `${selectedAnswer ? 'correct' : ''}` }
+  //       >
+  //         {rightAnswer}
+  //       </button>);
+  //     const answersArr = [...wrongButtons, rightButton];
+  //     return answersArr;
+  //   });
+  //   const randomAnswers = answers.sort(() => (Math.random()
+  //   > dotFive ? 1 : minusOne));
+  //   this.setState({ randomAnswers });
   // };
 
   onSelectQuestion = (option) => {
@@ -48,7 +104,7 @@ class Game extends React.Component {
   render() {
     // const { fetching } = this.props;
     const { selectedAnswer } = this.props;
-    const { round, questions, fetching } = this.state;
+    const { round, questions, fetching, isBtnDisable } = this.state;
     // console.log(error);
     if (fetching) return <p>Loading...</p>;
     // if (error) return this.invalidToken();
@@ -93,6 +149,16 @@ class Game extends React.Component {
             <div data-testid="answer-options">
               {randomAnswers.map((button) => button)}
             </div>
+            {selectedAnswer && (
+              <button
+                type="button"
+                data-testid="btn-next"
+                onClick={ () => this.handleNext() }
+                disabled={ isBtnDisable }
+              >
+                Next
+              </button>
+            )}
           </>
         )}
       </>
@@ -104,6 +170,7 @@ Game.propTypes = {
   fecthAPI: PropTypes.func.isRequired,
   // questions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   check: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
@@ -123,6 +190,7 @@ const mapStateToProps = ({ player }) => ({
 const mapDispatchToProps = (dispatch) => ({
   check: (option, answer) => dispatch(checkAnswer(option, answer)),
   fecthAPI: (token) => dispatch(fetchQuestions(token)),
+  next: () => dispatch(nextQuestion()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
