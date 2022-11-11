@@ -7,6 +7,18 @@ export const REQUEST_API = 'REQUEST_API';
 export const SUCCESS_REQUEST_QUESTIONS = 'SUCCESS_REQUEST_QUESTIONS';
 export const SUCCESS_REQUEST_TOKEN = 'SUCCESS_REQUEST_TOKEN';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
+export const CHECK_ANSWER = 'CHECK_ANSWER';
+export const CHANGE_QUESTION = 'CHANGE_QUESTION';
+
+export const checkAnswer = (option, answer) => ({
+  type: CHECK_ANSWER,
+  option,
+  answer,
+});
+
+export const nextQuestion = () => ({
+  type: CHANGE_QUESTION,
+});
 
 export const login = (email, name) => ({
   type: LOG_IN,
@@ -33,11 +45,11 @@ export const fetchToken = () => async (dispatch) => {
 };
 
 export const fetchQuestions = (token) => async (dispatch) => {
-  try {
-    dispatch(requestAPI());
-    const questions = await getQuestions(token);
-    dispatch(successRequestQuestions(questions));
-  } catch (error) {
-    dispatch(failedRequest(error));
+  dispatch(requestAPI());
+  const questions = await getQuestions(token);
+  if (questions.response_code === 0) {
+    dispatch(successRequestQuestions(questions.results));
+  } else {
+    dispatch(failedRequest());
   }
 };
