@@ -3,42 +3,65 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
 import App from '../App';
-
-const initialStateMock = {
-  assertions: 0,
-  score: 0,
-};
+import Feedback from '../pages/Feedback';
 
 describe('Testing Feedback component', () => {
+  
+  it('Testing if renders correctly when all scores are 0', () => {
+    
+    renderWithRouterAndRedux(<Feedback />);    
+    const score = screen.getByTestId('feedback-total-score')
+    const assertions = screen.getByTestId('feedback-total-question')
+    const scoreText = screen.getByTestId('feedback-text');
+    
+    expect(score.innerHTML).toBe("0");
+    expect(assertions.innerHTML).toBe("0");
+    expect(scoreText.innerHTML).toBe("Could be better...");
+  });
+  
+  
   it('Testing if renders in path "/Feedback"', () => {
-    const { history } = renderWithRouterAndRedux(<App />)
+    const initialState = {
+      assertions: 0,
+      score: 0,
+    };
+    const { history } = renderWithRouterAndRedux(<App />, initialState, '/Feedback');    
     const { pathname } = history.location;
-    history.push('/Feedback');
-    console.log(pathname);
+    
+    console.log(pathname)
     expect(pathname).toBe('/Feedback');
   });
 
-  // it('Testing if renders correctly', () => {
-  //   renderWithRouterAndRedux(<App />);
-  //   const email = screen.getByPlaceholderText('Email');
-  //   expect(email).toBeInTheDocument();
-  //   expect(email).toHaveProperty('type', 'email');
-  //   expect(email).toHaveAttribute('data-testid', 'input-gravatar-email');
-  //   const name = screen.getByPlaceholderText('Nome');
-  //   expect(name).toBeInTheDocument();
-  //   expect(name).toHaveProperty('type', 'text');
-  //   expect(name).toHaveAttribute('data-testid', 'input-player-name');
-  //   const buttons = screen.getAllByRole('button');
-  //   expect(buttons[0]).toBeInTheDocument();
-  //   expect(buttons[0]).toHaveTextContent('Play');
-  //   expect(buttons[0]).toHaveAttribute('data-testid', 'btn-play');
-  //   expect(buttons[1]).toBeInTheDocument();
-  //   expect(buttons[1]).toHaveTextContent('Configurações');
-  //   expect(buttons[1]).toHaveAttribute('data-testid', 'btn-settings');
+  it('Testing if renders in path "/Feedback"', () => {
+    const initialState = {
+      assertions: 0,
+      score: 0,
+    };
+    const { history } = renderWithRouterAndRedux(<App />, initialState, '/Feedback');    
+    const { pathname } = history.location;
+    
+    console.log(pathname)
+    expect(pathname).toBe('/Feedback');
+  });
+  
+  // it('Testing if renders correctly when score is 4', () => {
+    
+  //   const initialState = {
+  //     assertions: 4,
+  //     score: 4,
+  //   };
+    
+  //   renderWithRouterAndRedux(<App />, initialState, '/Feedback');
+  //   const assertions = screen.getByTestId('feedback-total-question');
+  //   const scoreText = screen.getByTestId('feedback-text');
+    
+
+  //   expect(assertions.innerHTML).toBe("4");
+  //   expect(scoreText.innerHTML).toBe("Well Done!");
   // });
 
   // it("Testing if don't passing an email or name the button is disabled", () => {
-  //   renderWithRouterAndRedux(<App />);
+    //   renderWithRouterAndRedux(<App />);
   //   const email = screen.getByPlaceholderText('Email');
   //   const name = screen.getByPlaceholderText('Nome');
   //   const button = screen.getByRole('button', {name: 'Play'});
@@ -50,37 +73,4 @@ describe('Testing Feedback component', () => {
   //   expect(button).toBeDisabled();
   // });
 
-  // it('Testing if passing email and name the button is enabled', () => {
-  //   renderWithRouterAndRedux(<App />);
-  //   const email = screen.getByPlaceholderText('Email');
-  //   const name = screen.getByPlaceholderText('Nome');
-  //   const button = screen.getByRole('button', {name: 'Play'});
-  //   userEvent.type(email, 'alguem@alguem.com');
-  //   userEvent.type(name, 'Lucas');
-  //   expect(button).toBeEnabled();
-  // });
-
-  // it('Testing fetching token api', () => {
-  //   renderWithRouterAndRedux(<App />);
-  //   const email = screen.getByPlaceholderText('Email');
-  //   const name = screen.getByPlaceholderText('Nome');
-  //   const button = screen.getByRole('button', {name: 'Play'});
-  //   userEvent.type(email, 'alguem@alguem.com');
-  //   userEvent.type(name, 'Lucas');
-  //   jest.spyOn(global, 'fetch');
-  //   global.fetch.mockResolvedValueOnce({
-  //     json: jest.fn().mockResolvedValue(mockFetch),
-  //   });
-  //   userEvent.click(button);
-  //   expect(global.fetch).toHaveBeenCalled();
-  //   expect(global.fetch).toHaveBeenCalledTimes(1);
-  // });
-
-  // it('Testing config button', () => {
-  //   const { history } = renderWithRouterAndRedux(<App />);
-  //   const button = screen.getByRole('button', {name: 'Configurações'})
-  //   userEvent.click(button);
-  //   const { pathname } = history.location;
-  //   expect(pathname).toBe('/settings');
-  });
-// })
+ });
