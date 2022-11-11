@@ -3,17 +3,19 @@ import {
   SUCCESS_REQUEST_QUESTIONS,
   FAILED_REQUEST,
   LOG_IN,
+  CHECK_ANSWER,
+  CHANGE_QUESTION,
 } from '../actions';
 
 const initialState = {
   questions: [],
-  error: '',
-  isFetching: false,
+  error: false,
+  isFetching: true,
   name: '',
-  assertions: '',
+  assertions: 0,
   score: 0,
   gravatarEmail: '',
-
+  selectedAnswer: false,
 };
 
 const player = (state = initialState, action) => {
@@ -27,13 +29,30 @@ const player = (state = initialState, action) => {
       isFetching: false,
     };
   case FAILED_REQUEST:
-    return { ...state, error: action.error, isFetching: false };
+    return {
+      ...state,
+      error: true,
+      isFetching: false,
+    };
   case LOG_IN:
     return {
       ...state,
       name: action.name,
       gravatarEmail: action.email,
     };
+  case CHECK_ANSWER:
+    return {
+      ...state,
+      // assertions: action.option === action.answer
+      //   ? state.assertions + 10 : state.assertions,
+      selectedAnswer: true,
+    };
+  case CHANGE_QUESTION: {
+    return {
+      ...state,
+      selectedAnswer: false,
+    };
+  }
   default:
     return state;
   }

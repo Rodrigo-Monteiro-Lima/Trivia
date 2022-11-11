@@ -8,7 +8,6 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route path="/game" component={ Game } />
         <Route exact path="/" component={ Login } />
         <Route path="/Game" component={ Game } />
         <Route path="/settings" component={ Settings } />
