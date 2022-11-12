@@ -10,10 +10,11 @@ export const FAILED_REQUEST = 'FAILED_REQUEST';
 export const CHECK_ANSWER = 'CHECK_ANSWER';
 export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 
-export const checkAnswer = (option, answer) => ({
+export const checkAnswer = (option, answer, points) => ({
   type: CHECK_ANSWER,
   option,
   answer,
+  points,
 });
 
 export const nextQuestion = () => ({
@@ -38,6 +39,7 @@ export const fetchToken = () => async (dispatch) => {
   try {
     dispatch(requestAPI());
     const token = await getToken();
+    localStorage.setItem('token', token);
     dispatch(successRequestToken(token));
   } catch (error) {
     dispatch(failedRequest(error));
