@@ -6,6 +6,8 @@ import { fetchQuestions, checkAnswer, nextQuestion } from '../redux/actions';
 import getQuestions from '../services/questionsAPI';
 import './Game.css';
 
+const ONE_SECOND = 1000;
+const THIRTY_SECONDS = 30000;
 class Game extends React.Component {
   constructor() {
     super();
@@ -14,8 +16,8 @@ class Game extends React.Component {
       round: 0,
       questions: [],
       fetching: true,
-      isBtnDisable: false,
-      // randomAnswers: [],
+      seconds: 30,
+      disabled: false,
     };
   }
 
@@ -23,6 +25,7 @@ class Game extends React.Component {
     const { fecthAPI, history } = this.props;
     const token = localStorage.getItem('token');
     const questions = await getQuestions(token);
+    this.seconds();
     if (questions.response_code !== 0) {
       localStorage.removeItem('token');
       history.push('/');
@@ -31,7 +34,6 @@ class Game extends React.Component {
       questions: questions.results,
       fetching: false,
     });
-    // this.randomize();
     fecthAPI(token);
   }
 
@@ -42,69 +44,59 @@ class Game extends React.Component {
   // };
 
   handleNext = () => {
-    const { next } = this.props;
-    this.setState((estadoAnterior) => ({
-      round: estadoAnterior.round + 1,
-    }), this.validation);
-    next();
-  };
-
-  validation = () => {
-    const { round, questions } = this.state;
+    const { next, history } = this.props;
+    const { questions, round } = this.state;
+    this.setState({ seconds: 30 });
     if (round === questions.length - 1) {
-      this.setState({
-        isBtnDisable: true,
-      });
+      history.push('/Feedback');
     } else {
-      this.setState({ isBtnDisable: false });
+      this.setState((estadoAnterior) => ({
+        round: estadoAnterior.round + 1,
+      }));
     }
+    next();
+    this.seconds();
   };
-
-  // randomize = () => {
-  //   const { questions } = this.state;
-  //   const answers = questions.map((question) => {
-  //     const wrongAnwswers = question.incorrect_answers;
-  //     const rightAnswer = question.correct_answer;
-  //     const wrongButtons = wrongAnwswers.map((answer, i) => (
-  //       <button
-  //         type="button"
-  //         key={ i }
-  //         data-testid={ `wrong-answer${i}` }
-  //         onClick={ () => this.onSelectQuestion(answer) }
-  //         className={ `${selectedAnswer && rightAnswer !== answer ? 'wrong' : ''}` }
-  //       >
-  //         {answer}
-  //       </button>
-  //     ));
-  //     const rightButton = (
-  //       <button
-  //         type="button"
-  //         key={ wrongAnwswers.length }
-  //         data-testid="correct-answer"
-  //         onClick={ () => this.onSelectQuestion(rightAnswer) }
-  //         className={ `${selectedAnswer ? 'correct' : ''}` }
-  //       >
-  //         {rightAnswer}
-  //       </button>);
-  //     const answersArr = [...wrongButtons, rightButton];
-  //     return answersArr;
-  //   });
-  //   const randomAnswers = answers.sort(() => (Math.random()
-  //   > dotFive ? 1 : minusOne));
-  //   this.setState({ randomAnswers });
-  // };
 
   onSelectQuestion = (option) => {
     const { check } = this.props;
-    const { round, questions } = this.state;
+    const { round, questions, seconds } = this.state;
+    clearInterval(this.timerID);
+    clearTimeout(this.timeoutID);
     const answer = questions[round].correct_answer;
-    check(option, answer);
+    const difficulty = this.handleDifficulty(questions[round].difficulty);
+    const points = seconds * difficulty;
+    check(option, answer, points);
+  };
+
+  handleDifficulty = (difficulty) => {
+    const one = 1;
+    const two = 2;
+    const three = 3;
+    switch (difficulty) {
+    case 'hard':
+      return three;
+    case 'medium':
+      return two;
+    default:
+      return one;
+    }
+  };
+
+  seconds = () => {
+    this.timerID = setInterval(() => this.setState((prev) => ({
+      seconds: prev.seconds - 1,
+    })), ONE_SECOND);
+    this.timeoutID = setTimeout(() => {
+      clearInterval(this.timerID);
+      this.setState({ seconds: 30, disabled: true });
+    }, THIRTY_SECONDS);
   };
 
   render() {
     // const { fetching } = this.props;
     const { selectedAnswer } = this.props;
-    const { round, questions, fetching, isBtnDisable } = this.state;
+    const { round, questions, fetching, seconds, disabled } = this.state;
     // console.log(error);
     if (fetching) return <p>Loading...</p>;
     // if (error) return this.invalidToken();
@@ -120,6 +112,7 @@ class Game extends React.Component {
         data-testid={ `wrong-answer${i}` }
         onClick={ () => this.onSelectQuestion(answer) }
         className={ `${selectedAnswer && rightAnswer !== answer ? 'wrong' : ''}` }
+        disabled={ disabled }
       >
         {answer}
       </button>
@@ -131,6 +124,7 @@ class Game extends React.Component {
         data-testid="correct-answer"
         onClick={ () => this.onSelectQuestion(rightAnswer) }
         className={ `${selectedAnswer ? 'correct' : ''}` }
+        disabled={ disabled }
       >
         {rightAnswer}
       </button>);
@@ -146,6 +140,7 @@ class Game extends React.Component {
           <>
             <h2 data-testid="question-category">{thisRound.category}</h2>
             <h3 data-testid="question-text">{thisRound.question}</h3>
+            <p>{seconds}</p>
             <div data-testid="answer-options">
               {randomAnswers.map((button) => button)}
             </div>
@@ -154,7 +149,6 @@ class Game extends React.Component {
                 type="button"
                 data-testid="btn-next"
                 onClick={ () => this.handleNext() }
-                disabled={ isBtnDisable }
               >
                 Next
               </button>
@@ -188,7 +182,7 @@ const mapStateToProps = ({ player }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  check: (option, answer) => dispatch(checkAnswer(option, answer)),
+  check: (option, answer, points) => dispatch(checkAnswer(option, answer, points)),
   fecthAPI: (token) => dispatch(fetchQuestions(token)),
   next: () => dispatch(nextQuestion()),
 });

@@ -18,6 +18,8 @@ const initialState = {
   selectedAnswer: false,
 };
 
+const ten = 10;
+
 const player = (state = initialState, action) => {
   switch (action.type) {
   case REQUEST_API:
@@ -43,8 +45,8 @@ const player = (state = initialState, action) => {
   case CHECK_ANSWER:
     return {
       ...state,
-      // assertions: action.option === action.answer
-      //   ? state.assertions + 10 : state.assertions,
+      score: action.option === action.answer
+        ? state.score + (ten + action.points) : state.score,
       selectedAnswer: true,
     };
   case CHANGE_QUESTION: {
