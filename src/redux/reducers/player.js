@@ -48,6 +48,8 @@ const player = (state = initialState, action) => {
       score: action.option === action.answer
         ? state.score + (ten + action.points) : state.score,
       selectedAnswer: true,
+      assertions: action.option === action.answer
+        ? state.assertions + one : state.assertions,
     };
   case CHANGE_QUESTION: {
     return {
