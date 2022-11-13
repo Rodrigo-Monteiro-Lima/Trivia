@@ -19,6 +19,7 @@ const initialState = {
 };
 
 const ten = 10;
+const one = 1;
 
 const player = (state = initialState, action) => {
   switch (action.type) {
