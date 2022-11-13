@@ -19,7 +19,7 @@ export default class Ranking extends React.Component {
         >
           Home
         </button>
-        <h1>Ranking</h1>
+        <h1 data-testid="ranking-title">Ranking</h1>
       </>
     );
   }
