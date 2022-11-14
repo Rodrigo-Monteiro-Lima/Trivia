@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { fetchQuestions, checkAnswer, nextQuestion } from '../redux/actions';
 import getQuestions from '../services/questionsAPI';
 import './Game.css';
+import Questions from '../components/Questions';
 
 const ONE_SECOND = 1000;
 const THIRTY_SECONDS = 30000;
@@ -100,50 +101,57 @@ class Game extends React.Component {
     // console.log(error);
     if (fetching) return <p>Loading...</p>;
     // if (error) return this.invalidToken();
-    const thisRound = questions[round];
-    const dotFive = 0.5;
-    const minusOne = -1;
-    const wrongAnwswers = thisRound.incorrect_answers;
-    const rightAnswer = thisRound.correct_answer;
-    const wrongButtons = wrongAnwswers.map((answer, i) => (
-      <button
-        type="button"
-        key={ i }
-        data-testid={ `wrong-answer${i}` }
-        onClick={ () => this.onSelectQuestion(answer) }
-        className={ `${selectedAnswer && rightAnswer !== answer ? 'wrong' : ''}` }
-        disabled={ disabled }
-      >
-        {answer}
-      </button>
-    ));
-    const rightButton = (
-      <button
-        type="button"
-        key={ wrongAnwswers.length }
-        data-testid="correct-answer"
-        onClick={ () => this.onSelectQuestion(rightAnswer) }
-        className={ `${selectedAnswer ? 'correct' : ''}` }
-        disabled={ disabled }
-      >
-        {rightAnswer}
-      </button>);
+    // const thisRound = questions[round];
+    // const dotFive = 0.5;
+    // const minusOne = -1;
+    // const wrongAnwswers = thisRound.incorrect_answers;
+    // const rightAnswer = thisRound.correct_answer;
+    // const wrongButtons = wrongAnwswers.map((answer, i) => (
+    //   <button
+    //     type="button"
+    //     key={ i }
+    //     data-testid={ `wrong-answer${i}` }
+    //     onClick={ () => this.onSelectQuestion(answer) }
+    //     className={ `${selectedAnswer && rightAnswer !== answer ? 'wrong' : ''}` }
+    //     disabled={ disabled }
+    //   >
+    //     {answer}
+    //   </button>
+    // ));
+    // const rightButton = (
+    //   <button
+    //     type="button"
+    //     key={ wrongAnwswers.length }
+    //     data-testid="correct-answer"
+    //     onClick={ () => this.onSelectQuestion(rightAnswer) }
+    //     className={ `${selectedAnswer ? 'correct' : ''}` }
+    //     disabled={ disabled }
+    //   >
+    //     {rightAnswer}
+    //   </button>);
 
-    const answersArr = [...wrongButtons, rightButton];
-    const randomAnswers = answersArr.sort(() => (Math.random()
-    > dotFive ? 1 : minusOne));
+    // const answersArr = [...wrongButtons, rightButton];
+    // const randomAnswers = answersArr.sort(() => (Math.random()
+    // > dotFive ? 1 : minusOne));
     return (
       <>
         <Header />
         {!fetching && questions.length !== 0
         && (
           <>
-            <h2 data-testid="question-category">{thisRound.category}</h2>
-            <h3 data-testid="question-text">{thisRound.question}</h3>
+            <Questions
+              questions={ questions }
+              index={ round }
+              onSelectQuestion={ this.onSelectQuestion }
+              disabled={ disabled }
+              selectedAnswer={ selectedAnswer }
+            />
+            {/* <h2 data-testid="question-category">{thisRound.category}</h2> */}
+            {/* <h3 data-testid="question-text">{thisRound.question}</h3> */}
             <p>{seconds}</p>
-            <div data-testid="answer-options">
-              {randomAnswers.map((button) => button)}
-            </div>
+            {/* <div data-testid="answer-options"> */}
+            {/* {randomAnswers.map((button) => button)} */}
+            {/* </div> */}
             {selectedAnswer && (
               <button
                 type="button"
