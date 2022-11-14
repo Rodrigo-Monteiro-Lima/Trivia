@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Header from '../components/Header';
 import { connect } from 'react-redux';
 import { newGame } from '../redux/actions';
 
@@ -10,8 +9,6 @@ class Ranking extends React.Component {
   componentDidMount() {
     const ranking = JSON.parse(localStorage.getItem('ranking'));
     const orderedRanking = ranking.sort((a, b) => b.score - a.score);
-    console.log(ranking);
-    console.log(orderedRanking);
     this.setState({
       ranking: orderedRanking,
     });
@@ -28,7 +25,6 @@ class Ranking extends React.Component {
 
     return (
       <>
-        {/* <Header /> */}
         <button
           type="button"
           onClick={ this.onClick }
@@ -61,16 +57,7 @@ Ranking.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   playAgain: PropTypes.func.isRequired,
-  // name: PropTypes.string.isRequired,
-  // gravatarEmail: PropTypes.string.isRequired,
-  // score: PropTypes.number.isRequired,
 };
-
-// const mapStateToProps = ({ player }) => ({
-//   name: player.name,
-//   gravatarEmail: player.gravatarEmail,
-//   score: player.score,
-// });
 
 const mapDispatchToProps = (dispatch) => ({
   playAgain: () => dispatch(newGame()),

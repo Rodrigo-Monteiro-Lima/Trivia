@@ -6,40 +6,24 @@ import Header from '../components/Header';
 import { newGame } from '../redux/actions';
 
 class Feedback extends Component {
-  // state = {
-  //   newRankObj: {},
-  //   prevRank: [],
-  //   newRank: [],
-  // };
-
   componentDidMount() {
     const { name, gravatarEmail, score } = this.props;
-
     const userEmail = gravatarEmail;
     const emailHash = md5(userEmail).toString();
     const gravatarImg = `https://www.gravatar.com/avatar/${emailHash}`;
-
     const addPlayer = {
       name,
       score,
       gravatarImg,
     };
-    console.log(addPlayer);
-
     if (localStorage.getItem('ranking') === null) {
       localStorage.setItem('ranking', JSON.stringify([]));
-      // localStorage.setItem('ranking', [addPlayer]);
     }
     console.log(JSON.parse(localStorage.getItem('ranking')));
     console.log(localStorage.getItem('ranking'));
-
     const prevRanking = JSON.parse(localStorage.getItem('ranking'));
-    // const prevRanking = localStorage.getItem('ranking');
     console.log(JSON.parse(localStorage.getItem('ranking')));
-    // console.log(localStorage.getItem('ranking'));
-
     localStorage.setItem('ranking', JSON.stringify([...prevRanking, addPlayer]));
-    // localStorage.setItem('ranking', [...prevRanking, addPlayer]);
     console.log(JSON.parse(localStorage.getItem('ranking')));
   }
 
@@ -60,10 +44,6 @@ class Feedback extends Component {
             { assertions > 2
               ? 'Well Done!' : 'Could be better...' }
           </h1>
-          {/* <h1 data-testid="feedback-text">
-      { assertions >= three
-        ? 'Well Done!' : 'Could be better...' }
-    </h1> */}
           <h3 data-testid="feedback-total-question">{ assertions }</h3>
           <h3 data-testid="feedback-total-score">{ score }</h3>
         </main>
@@ -102,11 +82,6 @@ const mapStateToProps = ({ player }) => ({
   score: player.score,
   name: player.name,
   gravatarEmail: player.gravatarEmail,
-  // questions: player.questions,
-  // selectedAnswer: player.selectedAnswer,
-  // error: player.error,
-  // fetching: player.isFetching,
-  // question: player.questions[0].question,
 });
 
 const mapDispatchToProps = (dispatch) => ({

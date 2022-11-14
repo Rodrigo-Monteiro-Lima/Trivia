@@ -162,23 +162,17 @@ class Game extends React.Component {
 
 Game.propTypes = {
   fecthAPI: PropTypes.func.isRequired,
-  // questions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   check: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-  // error: PropTypes.bool.isRequired,
   selectedAnswer: PropTypes.bool.isRequired,
-  // fetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({ player }) => ({
   questions: player.questions,
   selectedAnswer: player.selectedAnswer,
-  // error: player.error,
-  // fetching: player.isFetching,
-  // question: player.questions[0].question,
 });
 
 const mapDispatchToProps = (dispatch) => ({

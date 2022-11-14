@@ -28,7 +28,6 @@ describe('Testing Feedback component', () => {
     const { history } = renderWithRouterAndRedux(<App />, initialState, '/Feedback');    
     const { pathname } = history.location;
     
-    console.log(pathname)
     expect(pathname).toBe('/Feedback');
   });
 
@@ -40,37 +39,55 @@ describe('Testing Feedback component', () => {
     const { history } = renderWithRouterAndRedux(<App />, initialState, '/Feedback');    
     const { pathname } = history.location;
     
-    console.log(pathname)
     expect(pathname).toBe('/Feedback');
   });
   
-  // it('Testing if renders correctly when score is 4', () => {
+  it('Testing if renders correctly when score is 4', async () => {
     
-  //   const initialState = {
-  //     assertions: 4,
-  //     score: 4,
-  //   };
+    const initialState = {
+      player: {
+        assertions: 4,
+        score: 4,
+      }
+    };
     
-  //   renderWithRouterAndRedux(<App />, initialState, '/Feedback');
-  //   const assertions = screen.getByTestId('feedback-total-question');
-  //   const scoreText = screen.getByTestId('feedback-text');
-    
+    renderWithRouterAndRedux(<App />, initialState, '/Feedback');
+    const assertions = screen.getByTestId('feedback-total-question');
+    const scoreText = screen.getByTestId('feedback-text');
 
-  //   expect(assertions.innerHTML).toBe("4");
-  //   expect(scoreText.innerHTML).toBe("Well Done!");
-  // });
+    expect(assertions.innerHTML).toBe("4");
+    expect(scoreText.innerHTML).toBe("Well Done!");
+  });
 
-  // it("Testing if don't passing an email or name the button is disabled", () => {
-    //   renderWithRouterAndRedux(<App />);
-  //   const email = screen.getByPlaceholderText('Email');
-  //   const name = screen.getByPlaceholderText('Nome');
-  //   const button = screen.getByRole('button', {name: 'Play'});
-  //   expect(button).toBeDisabled();
-  //   userEvent.type(email, 'email@test.com');
-  //   expect(button).toBeDisabled();
-  //   userEvent.clear(email);
-  //   userEvent.type(name, 'George');
-  //   expect(button).toBeDisabled();
-  // });
+  it("Testing if button 'Play Again' redirect to '/'", () => {
+    const initialState = {
+      player: {
+        assertions: 4,
+        score: 4,
+      }
+    };
+    
+    const { history } = renderWithRouterAndRedux(<App />, initialState, '/Feedback');
+    const btnPlayAgain = screen.getByRole('button', {name: 'Play Again'}) 
+    expect(btnPlayAgain).toHaveAttribute('data-testid', 'btn-play-again');
+    userEvent.click(btnPlayAgain);
+    const { pathname } = history.location;    
+    expect(pathname).toBe('/');
+  });
+  it("Testing if button 'Ranking' redirect to '/ranking'", () => {
+    const initialState = {
+      player: {
+        assertions: 4,
+        score: 4,
+      }
+    };
+    
+    const { history } = renderWithRouterAndRedux(<App />, initialState, '/Feedback');
+    const btnRanking = screen.getByRole('button', {name: 'Ranking'}) 
+    expect(btnRanking).toHaveAttribute('data-testid', 'btn-ranking');
+    userEvent.click(btnRanking);
+    const { pathname } = history.location;    
+    expect(pathname).toBe('/ranking');
+  });
 
  });
