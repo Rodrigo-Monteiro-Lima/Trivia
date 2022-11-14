@@ -5,6 +5,7 @@ import {
   LOG_IN,
   CHECK_ANSWER,
   CHANGE_QUESTION,
+  NEW_GAME,
 } from '../actions';
 
 const initialState = {
@@ -56,6 +57,13 @@ const player = (state = initialState, action) => {
     return {
       ...state,
       selectedAnswer: false,
+    };
+  }
+  case NEW_GAME: {
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
     };
   }
   default:

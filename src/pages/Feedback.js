@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import Header from '../components/Header';
+import { newGame } from '../redux/actions';
 
 class Feedback extends Component {
   // state = {
@@ -42,6 +43,12 @@ class Feedback extends Component {
     console.log(JSON.parse(localStorage.getItem('ranking')));
   }
 
+  handleClick = () => {
+    const { playAgain, history } = this.props;
+    playAgain();
+    history.push('/');
+  };
+
   render() {
     const { assertions, score, history } = this.props;
 
@@ -63,7 +70,7 @@ class Feedback extends Component {
         <button
           type="button"
           data-testid="btn-play-again"
-          onClick={ () => history.push('/') }
+          onClick={ () => this.handleClick() }
         >
           Play Again
         </button>
@@ -87,7 +94,7 @@ Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-// dispatch: PropTypes.func.isRequired,
+  playAgain: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ player }) => ({
@@ -102,4 +109,8 @@ const mapStateToProps = ({ player }) => ({
   // question: player.questions[0].question,
 });
 
-export default connect(mapStateToProps)(Feedback);
+const mapDispatchToProps = (dispatch) => ({
+  playAgain: () => dispatch(newGame()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

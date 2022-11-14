@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
-// import { connect } from 'react-redux';
+// import Header from '../components/Header';
+import { connect } from 'react-redux';
+import { newGame } from '../redux/actions';
 
 class Ranking extends React.Component {
   state = { ranking: [] };
@@ -11,14 +12,14 @@ class Ranking extends React.Component {
     const orderedRanking = ranking.sort((a, b) => b.score - a.score);
     console.log(ranking);
     console.log(orderedRanking);
-
     this.setState({
       ranking: orderedRanking,
     });
   }
 
   onClick = () => {
-    const { history } = this.props;
+    const { history, playAgain } = this.props;
+    playAgain();
     history.push('/');
   };
 
@@ -27,7 +28,7 @@ class Ranking extends React.Component {
 
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <button
           type="button"
           onClick={ this.onClick }
@@ -59,6 +60,7 @@ Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  playAgain: PropTypes.func.isRequired,
   // name: PropTypes.string.isRequired,
   // gravatarEmail: PropTypes.string.isRequired,
   // score: PropTypes.number.isRequired,
@@ -70,5 +72,8 @@ Ranking.propTypes = {
 //   score: player.score,
 // });
 
-// export default connect(mapStateToProps)(Ranking);
-export default Ranking;
+const mapDispatchToProps = (dispatch) => ({
+  playAgain: () => dispatch(newGame()),
+});
+
+export default connect(null, mapDispatchToProps)(Ranking);

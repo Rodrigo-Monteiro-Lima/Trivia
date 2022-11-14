@@ -9,6 +9,11 @@ export const SUCCESS_REQUEST_TOKEN = 'SUCCESS_REQUEST_TOKEN';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
 export const CHECK_ANSWER = 'CHECK_ANSWER';
 export const CHANGE_QUESTION = 'CHANGE_QUESTION';
+export const NEW_GAME = 'NEW_GAME';
+
+export const newGame = () => ({
+  type: NEW_GAME,
+});
 
 export const checkAnswer = (option, answer, points) => ({
   type: CHECK_ANSWER,
