@@ -25,6 +25,7 @@ class Ranking extends React.Component {
 
     return (
       <>
+        <h1 data-testid="ranking-title">Ranking</h1>
         <button
           type="button"
           onClick={ this.onClick }
@@ -32,8 +33,6 @@ class Ranking extends React.Component {
         >
           Home
         </button>
-
-        <h1 data-testid="ranking-title">Ranking</h1>
         <div>
           {ranking.map((player, i) => (
             <div key={ i }>
