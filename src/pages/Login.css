@@ -59,6 +59,10 @@ input {
   width: 519px;
 }
 
+.green-btn :before {
+  content: '';
+}
+
 .config {
   background-color: grey;
 }
