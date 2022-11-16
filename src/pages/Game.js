@@ -107,14 +107,16 @@ class Game extends React.Component {
         && (
           <>
             <Questions
+              seconds={ seconds }
               questions={ questions }
               index={ round }
               onSelectQuestion={ this.onSelectQuestion }
               disabled={ disabled }
               selectedAnswer={ selectedAnswer }
+              handleNext={ this.handleNext }
             />
-            <p>{`Tempo: ${seconds}s`}</p>
-            {selectedAnswer && (
+            {/* <p>{`Tempo: ${seconds}s`}</p> */}
+            {/* {selectedAnswer && (
               <button
                 type="button"
                 data-testid="btn-next"
@@ -122,7 +124,7 @@ class Game extends React.Component {
               >
                 Next
               </button>
-            )}
+            )} */}
           </>
         )}
       </>

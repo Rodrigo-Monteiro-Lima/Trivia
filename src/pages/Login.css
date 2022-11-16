@@ -44,7 +44,7 @@ input {
   width: 519px;
 }
 
-.start-btn {
+.start-btn, .green-btn {
   background: #2fc18c;
   border: 0;
   border-radius: 5px;

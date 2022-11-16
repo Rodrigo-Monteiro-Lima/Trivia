@@ -39,7 +39,11 @@ class Questions extends Component {
 
   render() {
     const { orderedAnswer } = this.state;
-    const { questions, index, onSelectQuestion, selectedAnswer, disabled } = this.props;
+    const { questions,
+      index,
+      onSelectQuestion,
+      selectedAnswer, disabled, seconds,
+      handleNext } = this.props;
     const thisRound = questions[index];
     const rightAnswer = thisRound.correct_answer;
     return (
@@ -51,9 +55,12 @@ class Questions extends Component {
               data-testid="question-category"
               className="category"
             >
-              {thisRound.category}
+              {decodeURIComponent(thisRound.category)}
             </h2>
-            <h3 data-testid="question-text" className="text">{thisRound.question}</h3>
+            <h3 data-testid="question-text" className="text">
+              {decodeURIComponent(thisRound.question)}
+            </h3>
+            <p>{seconds}</p>
           </div>
           <div data-testid="answer-options" className="answer-options">
             {orderedAnswer.map((answer, i) => (
@@ -68,7 +75,7 @@ class Questions extends Component {
                       ? 'wrong' : 'option'}` }
                     onClick={ () => onSelectQuestion(answer) }
                   >
-                    {answer}
+                    {decodeURIComponent(answer)}
                   </button>)
                 : (
                   <button
@@ -79,9 +86,17 @@ class Questions extends Component {
                     className={ `${selectedAnswer ? 'correct' : 'option'}` }
                     onClick={ () => onSelectQuestion(answer) }
                   >
-                    {answer}
+                    {decodeURIComponent(answer)}
                   </button>)
             ))}
+            <button
+              type="button"
+              data-testid="btn-next"
+              className="green-btn"
+              onClick={ () => handleNext() }
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
@@ -95,6 +110,8 @@ Questions.propTypes = {
   onSelectQuestion: PropTypes.func.isRequired,
   selectedAnswer: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,
+  seconds: PropTypes.number.isRequired,
+  handleNext: PropTypes.func.isRequired,
 };
 
 export default Questions;
