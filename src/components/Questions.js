@@ -60,7 +60,9 @@ class Questions extends Component {
             <h3 data-testid="question-text" className="text">
               {decodeURIComponent(thisRound.question)}
             </h3>
-            <p>{seconds}</p>
+
+            <p className="timer">{`Timer: ${seconds}s`}</p>
+
           </div>
           <div data-testid="answer-options" className="answer-options">
             {orderedAnswer.map((answer, i) => (
@@ -89,14 +91,16 @@ class Questions extends Component {
                     {decodeURIComponent(answer)}
                   </button>)
             ))}
-            <button
-              type="button"
-              data-testid="btn-next"
-              className="green-btn"
-              onClick={ () => handleNext() }
-            >
-              Next
-            </button>
+            {selectedAnswer
+            && (
+              <button
+                type="button"
+                data-testid="btn-next"
+                className="green-btn"
+                onClick={ () => handleNext() }
+              >
+                Next
+              </button>)}
           </div>
         </div>
       </div>
