@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import logo from '../logo trivia.png';
+import logo from '../logo trivia.png';
 
 class Questions extends Component {
   constructor() {
@@ -48,7 +48,7 @@ class Questions extends Component {
     const rightAnswer = thisRound.correct_answer;
     return (
       <div className="main-container">
-        {/* <img src={ logo } alt="logo" className="logo" /> */}
+        <img src={ logo } alt="logo" className="logo" />
         <div className="questions-answer-container">
           <div className="question-container">
             <h2
@@ -91,7 +91,8 @@ class Questions extends Component {
                     {decodeURIComponent(answer)}
                   </button>)
             ))}
-            {selectedAnswer
+            <div className="next-btn">
+              {selectedAnswer
             && (
               <button
                 type="button"
@@ -101,6 +102,7 @@ class Questions extends Component {
               >
                 Next
               </button>)}
+            </div>
           </div>
         </div>
       </div>

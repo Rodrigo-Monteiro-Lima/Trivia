@@ -1,5 +1,13 @@
 @import url('https://fonts.cdnfonts.com/css/verdana-pro-cond') ;
 
+
+.game-container {
+
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 100%;
+}
+
 .correct {
   border: 3px solid rgb(6, 240, 15);
   border-radius: 100px;
@@ -76,12 +84,14 @@
 }
 
 .main-container {
-  width: 100vw;
+  height: 100%;
+  margin-top: 6rem;
+  position: relative;
+  width: 100%;
 }
 
 .questions-answer-container {
   align-items: center;
-  border: 1px solid red;
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
@@ -89,6 +99,10 @@
 }
 
 .logo {
+  left: 250px;
+  position: absolute;
+  top: -200px;
+  width: 15%;
   z-index: 10;
 }
 
@@ -124,4 +138,25 @@
   line-height: 150%;
   position: absolute;
   width: 100%;
+}
+
+.next-btn {
+  height: 45px;
+
+  /* margin-top: 2rem; */
+  width: 519px;
+}
+
+.next-btn:before {
+
+  /* content: ' '; */
+}
+
+footer {
+  background: #3c1b7a;
+  bottom: 0;
+  height: 146px;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
 }

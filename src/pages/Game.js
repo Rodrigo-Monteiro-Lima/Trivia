@@ -101,7 +101,7 @@ class Game extends React.Component {
     if (fetching) return <p>Loading...</p>;
     // if (error) return this.invalidToken();
     return (
-      <>
+      <div className="game-container">
         <Header />
         {!fetching && questions.length !== 0
         && (
@@ -125,9 +125,10 @@ class Game extends React.Component {
                 Next
               </button>
             )} */}
+            <footer />
           </>
         )}
-      </>
+      </div>
     );
   }
 }

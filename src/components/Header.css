@@ -4,16 +4,17 @@ header {
   display: flex;
   height: 113px;
   justify-content: flex-end;
-  position: absolute;
+
+  /* position: absolute; */
   top: 0;
-  width: 100vw;
+  width: 100%;
 }
 
 .header-container {
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  width: 40vw;
+  width: 40%;
 }
 
 .player {

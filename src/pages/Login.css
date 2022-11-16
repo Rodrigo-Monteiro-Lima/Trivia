@@ -1,10 +1,12 @@
 body {
   align-items: center;
   background-image: url('../background.png');
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  width: 100vw;
+
+  /* display: flex; */
+  height: 100%;
+
+  /* justify-content: center; */
+  width: 100%;
 }
 
 img {
@@ -59,14 +61,19 @@ input {
   width: 519px;
 }
 
-.green-btn :before {
-  content: '';
-}
-
 .config {
   background-color: grey;
 }
 
 button:hover {
   opacity: 0.8;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
