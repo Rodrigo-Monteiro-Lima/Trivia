@@ -1,0 +1,29 @@
+header {
+  align-items: center;
+  background: white;
+  display: flex;
+  height: 113px;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+.header-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 40vw;
+}
+
+.player {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.avatar {
+  border-radius: 1.134rem;
+  height: 37px;
+  width: 37px;
+}

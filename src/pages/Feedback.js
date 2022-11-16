@@ -19,12 +19,8 @@ class Feedback extends Component {
     if (localStorage.getItem('ranking') === null) {
       localStorage.setItem('ranking', JSON.stringify([]));
     }
-    console.log(JSON.parse(localStorage.getItem('ranking')));
-    console.log(localStorage.getItem('ranking'));
     const prevRanking = JSON.parse(localStorage.getItem('ranking'));
-    console.log(JSON.parse(localStorage.getItem('ranking')));
     localStorage.setItem('ranking', JSON.stringify([...prevRanking, addPlayer]));
-    console.log(JSON.parse(localStorage.getItem('ranking')));
   }
 
   handleClick = () => {

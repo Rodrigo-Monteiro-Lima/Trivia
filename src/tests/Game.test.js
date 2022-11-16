@@ -59,7 +59,7 @@ describe('Testing Game component', () => {
     expect(timer).toBeInTheDocument();
     const buttons = screen.getAllByRole('button');
     expect(buttons).toHaveLength(2);
-    const wrongAnswer = screen.getByTestId('wrong-answer0');
+    const wrongAnswer = screen.getByTestId(/wrong-answer/i);
     expect(wrongAnswer).toBeInTheDocument();
     expect(wrongAnswer).toHaveTextContent('True');
     const rightAnswer = screen.getByTestId('correct-answer');
@@ -117,7 +117,7 @@ describe('Testing Game component', () => {
     renderWithRouterAndRedux(<App />, initialState, '/Game');
     const loading = screen.getByText('Loading...');
     await waitForElementToBeRemoved(loading);
-    const wrongAnswer = screen.getByTestId('wrong-answer0');
+    const wrongAnswer = screen.getByTestId(/wrong-answer/i);
     userEvent.click(wrongAnswer);
     const nextBtn = screen.queryByRole('button', {name: 'Next'});
     userEvent.click(nextBtn);

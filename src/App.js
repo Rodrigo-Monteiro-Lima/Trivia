@@ -5,6 +5,7 @@ import Game from './pages/Game';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
 import Ranking from './pages/Ranking';
+import './App.css';
 
 function App() {
   return (

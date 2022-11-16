@@ -1,7 +1,106 @@
 .correct {
   border: 3px solid rgb(6, 240, 15);
+  border-radius: 100px;
+  color: black;
+  cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  line-height: 150%;
+  margin-bottom: 1rem;
+  width: 519px;
 }
 
 .wrong {
   border: 3px solid red;
+  border-radius: 100px;
+  color: black;
+  cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  line-height: 150%;
+  margin-bottom: 1rem;
+  width: 519px;
+}
+
+.question-container {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  height: 286px;
+  justify-content: center;
+  position: relative;
+  width: 439px;
+}
+
+.category {
+  align-items: center;
+  background: #f9ba18;
+  border-radius: 100px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  position: absolute;
+  top: -25px;
+  width: 413px;
+}
+
+.text {
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  width: 413px;
+}
+
+.main-container {
+  width: 100vw;
+}
+
+.questions-answer-container {
+  align-items: center;
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 1084px;
+}
+
+.logo {
+  z-index: 10;
+}
+
+.answer-options {
+  width: 519px;
+}
+
+.option {
+  background: white;
+  border: 1px solid white;
+  border-radius: 100px;
+  color: black;
+  cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  line-height: 150%;
+  margin-bottom: 1rem;
+  width: 519px;
 }
