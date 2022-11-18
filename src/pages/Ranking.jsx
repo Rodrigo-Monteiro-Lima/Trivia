@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { newGame } from '../redux/actions';
+import './Ranking.css';
+import logo from '../assets/logo.png';
 
 class Ranking extends React.Component {
   state = { ranking: [] };
@@ -24,29 +26,33 @@ class Ranking extends React.Component {
     const { ranking } = this.state;
 
     return (
-      <>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        <button
-          type="button"
-          onClick={ this.onClick }
-          data-testid="btn-go-home"
-        >
-          Home
-        </button>
-        <div>
-          {ranking.map((player, i) => (
-            <div key={ i }>
-              <img src={ player.gravatarImg } alt={ player.name } />
-              <div data-testid={ `player-name-${i}` }>
-                {player.name}
+      <div className="ranking-main-container">
+        <div className="ranking-container">
+          <img src={ logo } alt="" className="logo-ranking" />
+          <h1 data-testid="ranking-title">Ranking</h1>
+          <div className="players-ranking-container">
+            {ranking.map((player, i) => (
+              <div key={ i } className="player-ranking">
+                <div data-testid={ `player-name-${i}` } className="player-info">
+                  <img src={ player.gravatarImg } alt={ player.name } />
+                  {player.name}
+                </div>
+                <div data-testid={ `player-score-${i}` } className="player-score">
+                  <p>{`${player.score} points`}</p>
+                </div>
               </div>
-              <div data-testid={ `player-score-${i}` }>
-                {player.score}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={ this.onClick }
+            data-testid="btn-go-home"
+            className="green-btn btn"
+          >
+            Home
+          </button>
         </div>
-      </>
+      </div>
     );
   }
 }

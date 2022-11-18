@@ -10,9 +10,19 @@ export const FAILED_REQUEST = 'FAILED_REQUEST';
 export const CHECK_ANSWER = 'CHECK_ANSWER';
 export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 export const NEW_GAME = 'NEW_GAME';
+export const TIME_OUT = 'TIME_OUT';
+export const HELP = 'HELP';
+
+export const deleteQuestion = () => ({
+  type: HELP,
+});
 
 export const newGame = () => ({
   type: NEW_GAME,
+});
+
+export const timeOut = () => ({
+  type: TIME_OUT,
 });
 
 export const checkAnswer = (option, answer, points) => ({

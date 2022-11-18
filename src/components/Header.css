@@ -14,7 +14,7 @@ header {
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  width: 40%;
+  width: 50%;
 }
 
 .player {
@@ -27,4 +27,20 @@ header {
   border-radius: 1.134rem;
   height: 37px;
   width: 37px;
+}
+
+.score:before {
+  content: url('../assets/star.svg');
+}
+
+.score {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-config {
+  background: white;
+  border: none;
+  cursor: pointer;
 }

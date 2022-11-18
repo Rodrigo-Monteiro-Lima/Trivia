@@ -1,0 +1,115 @@
+.ranking-main-container {
+  align-items: center;
+  background-image: url('../assets//background-ranking.png');
+  background-repeat: no-repeat;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.ranking-container {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 458px;
+  justify-content: center;
+  margin-top: 4rem;
+  position: relative;
+  width: 469px;
+}
+
+.logo-ranking {
+  position: absolute;
+  top: -80px;
+  width: 150px;
+}
+
+.ranking-container h1 {
+  align-items: center;
+  color: #3c1b7a;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-bottom: 0.7rem;
+  margin-top: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btn {
+  width: 386px;
+}
+
+.player-ranking {
+  align-items: center;
+  background-color: #ebebeb;
+  border-radius: 2rem;
+  display: flex;
+  height: 55px;
+  justify-content: space-between;
+  padding-left: 1rem;
+  width: 386px;
+}
+
+.players-ranking-container {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  height: 195px;
+  margin-bottom: 23px;
+  overflow: auto;
+  padding-top: 0.1rem;
+}
+
+.player-info {
+  align-items: center;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  gap: 13px;
+  line-height: 150%;
+}
+
+.player-ranking img {
+  border-radius: 18.137px;
+  height: 37px;
+  width: 37px;
+}
+
+.player-score {
+  align-items: center;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  gap: 13px;
+  height: 55px;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  min-width: 164px;
+  padding-left: 0.75rem;
+}
+
+.player-score:before {
+  content: url('../assets/star.svg');
+}
+
+
+.player-score p {
+  display: flex;
+  flex-wrap: wrap;
+}

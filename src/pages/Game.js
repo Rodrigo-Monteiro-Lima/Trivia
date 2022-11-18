@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { fetchQuestions, checkAnswer, nextQuestion } from '../redux/actions';
+import { fetchQuestions, checkAnswer, nextQuestion, timeOut } from '../redux/actions';
 import getQuestions from '../services/questionsAPI';
 import './Game.css';
 import Questions from '../components/Questions';
+import Footer from '../components/Footer';
 
 const ONE_SECOND = 1000;
 const THIRTY_SECONDS = 30000;
@@ -47,7 +48,7 @@ class Game extends React.Component {
   handleNext = () => {
     const { next, history } = this.props;
     const { questions, round } = this.state;
-    this.setState({ seconds: 30 });
+    this.setState({ seconds: 30, disabled: false });
     if (round === questions.length - 1) {
       history.push('/Feedback');
     } else {
@@ -60,14 +61,16 @@ class Game extends React.Component {
   };
 
   onSelectQuestion = (option) => {
-    const { check } = this.props;
+    const { check, selectedAnswer } = this.props;
     const { round, questions, seconds } = this.state;
-    clearInterval(this.timerID);
-    clearTimeout(this.timeoutID);
-    const answer = questions[round].correct_answer;
-    const difficulty = this.handleDifficulty(questions[round].difficulty);
-    const points = seconds * difficulty;
-    check(option, answer, points);
+    if (!selectedAnswer) {
+      clearInterval(this.timerID);
+      clearTimeout(this.timeoutID);
+      const answer = questions[round].correct_answer;
+      const difficulty = this.handleDifficulty(questions[round].difficulty);
+      const points = seconds * difficulty;
+      check(option, answer, points);
+    }
   };
 
   handleDifficulty = (difficulty) => {
@@ -85,24 +88,26 @@ class Game extends React.Component {
   };
 
   seconds = () => {
+    const { time } = this.props;
     this.timerID = setInterval(() => this.setState((prev) => ({
       seconds: prev.seconds - 1,
     })), ONE_SECOND);
     this.timeoutID = setTimeout(() => {
       clearInterval(this.timerID);
       this.setState({ seconds: 30, disabled: true });
+      time();
     }, THIRTY_SECONDS);
   };
 
   render() {
     // const { fetching } = this.props;
-    const { selectedAnswer } = this.props;
+    const { selectedAnswer, history } = this.props;
     const { round, questions, fetching, seconds, disabled } = this.state;
     if (fetching) return <p>Loading...</p>;
     // if (error) return this.invalidToken();
     return (
       <div className="game-container">
-        <Header />
+        <Header history={ history } />
         {!fetching && questions.length !== 0
         && (
           <>
@@ -125,7 +130,7 @@ class Game extends React.Component {
                 Next
               </button>
             )} */}
-            <footer />
+            <Footer />
           </>
         )}
       </div>
@@ -137,6 +142,7 @@ Game.propTypes = {
   fecthAPI: PropTypes.func.isRequired,
   check: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
+  time: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
@@ -152,6 +158,7 @@ const mapDispatchToProps = (dispatch) => ({
   check: (option, answer, points) => dispatch(checkAnswer(option, answer, points)),
   fecthAPI: (token) => dispatch(fetchQuestions(token)),
   next: () => dispatch(nextQuestion()),
+  time: () => dispatch(timeOut()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

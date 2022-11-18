@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import { newGame } from '../redux/actions';
+import './Feedback.css';
+import logo from '../assets/logo trivia2.png';
 
 class Feedback extends Component {
+  constructor() {
+    super();
+    this.state = {
+      image: '',
+    };
+  }
+
   componentDidMount() {
     const { name, gravatarEmail, score } = this.props;
     const userEmail = gravatarEmail;
     const emailHash = md5(userEmail).toString();
     const gravatarImg = `https://www.gravatar.com/avatar/${emailHash}`;
+    this.setState({ image: gravatarImg });
     const addPlayer = {
       name,
       score,
@@ -31,33 +41,56 @@ class Feedback extends Component {
 
   render() {
     const { assertions, score, history } = this.props;
-
+    const { image } = this.state;
     return (
-      <>
-        <Header />
+      <div className="feedback-main-container">
+        {/* <Header /> */}
         <main>
-          <h1 data-testid="feedback-text">
-            { assertions > 2
-              ? 'Well Done!' : 'Could be better...' }
-          </h1>
-          <h3 data-testid="feedback-total-question">{ assertions }</h3>
-          <h3 data-testid="feedback-total-score">{ score }</h3>
+          <img src={ logo } alt="" className="trivia-logo" />
+          <div className="feedback-container">
+            <img
+              src={ image }
+              alt="player"
+              className={ `player-feedback ${assertions > 2
+                ? 'good' : 'bad'}` }
+            />
+            <h1
+              data-testid="feedback-text"
+              style={ { color: `${assertions > 2
+                ? '#2fc18c' : '#ea5d5d'}` } }
+              className="result-text"
+            >
+              { assertions > 2
+                ? 'Well Done!' : 'Could be better...' }
+            </h1>
+            <h3 data-testid="feedback-total-question">
+              { `You got ${assertions} ${assertions > 1
+                ? 'questions' : 'question'} right`}
+            </h3>
+            <h3 data-testid="feedback-total-score">{ `Total of ${score} points` }</h3>
+          </div>
+          <div className="button-container">
+            <button
+              type="button"
+              data-testid="btn-ranking"
+              onClick={ () => history.push('/ranking') }
+              className="blue-btn"
+            >
+              Ranking
+            </button>
+            <button
+              type="button"
+              data-testid="btn-play-again"
+              onClick={ () => this.handleClick() }
+              className="again-btn"
+            >
+              Play Again
+            </button>
+          </div>
         </main>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ () => this.handleClick() }
-        >
-          Play Again
-        </button>
-        <button
-          type="button"
-          data-testid="btn-ranking"
-          onClick={ () => history.push('/ranking') }
-        >
-          Ranking
-        </button>
-      </>
+
+        <footer className="footer" />
+      </div>
     );
   }
 }

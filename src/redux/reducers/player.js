@@ -6,6 +6,8 @@ import {
   CHECK_ANSWER,
   CHANGE_QUESTION,
   NEW_GAME,
+  TIME_OUT,
+  HELP,
 } from '../actions';
 
 const initialState = {
@@ -17,6 +19,7 @@ const initialState = {
   score: 0,
   gravatarEmail: '',
   selectedAnswer: false,
+  help: false,
 };
 
 const ten = 10;
@@ -54,17 +57,19 @@ const player = (state = initialState, action) => {
         ? state.assertions + one : state.assertions,
     };
   case CHANGE_QUESTION: {
-    return {
-      ...state,
-      selectedAnswer: false,
-    };
+    return { ...state, selectedAnswer: false };
   }
   case NEW_GAME: {
+    return { ...state, score: 0, assertions: 0, help: false, selectedAnswer: false };
+  }
+  case TIME_OUT: {
     return {
       ...state,
-      score: 0,
-      assertions: 0,
+      selectedAnswer: true,
     };
+  }
+  case HELP: {
+    return { ...state, help: true };
   }
   default:
     return state;
