@@ -131,7 +131,7 @@ class Questions extends Component {
                     type="button"
                     className="delete-btn"
                     onClick={ () => removeQuestion() }
-                    disabled={ help && selectedAnswer }
+                    disabled={ help }
                   >
                     Excluir Uma
                   </button>)}
