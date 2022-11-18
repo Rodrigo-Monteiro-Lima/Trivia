@@ -103,7 +103,7 @@ class Game extends React.Component {
     // const { fetching } = this.props;
     const { selectedAnswer, history } = this.props;
     const { round, questions, fetching, seconds, disabled } = this.state;
-    if (fetching) return <p>Loading...</p>;
+    if (fetching) return <div className="loader-container"><div className="loader">Loading...</div></div>;
     // if (error) return this.invalidToken();
     return (
       <div className="game-container">
