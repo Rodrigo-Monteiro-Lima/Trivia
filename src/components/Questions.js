@@ -124,7 +124,7 @@ class Questions extends Component {
                   className="green-btn"
                   onClick={ () => handleNext() }
                 >
-                  Next
+                  NEXT
                 </button>)
                 : (
                   <button

@@ -24,7 +24,7 @@ class Ranking extends React.Component {
 
   render() {
     const { ranking } = this.state;
-
+    console.log(ranking);
     return (
       <div className="ranking-main-container">
         <div className="ranking-container">
@@ -33,12 +33,17 @@ class Ranking extends React.Component {
           <div className="players-ranking-container">
             {ranking.map((player, i) => (
               <div key={ i } className="player-ranking">
+                {console.log(typeof player.score)}
                 <div data-testid={ `player-name-${i}` } className="player-info">
                   <img src={ player.gravatarImg } alt={ player.name } />
                   {player.name}
                 </div>
                 <div data-testid={ `player-score-${i}` } className="player-score">
-                  <p>{`${player.score} points`}</p>
+                  <p>
+                    <b>{player.score}</b>
+                    &nbsp;points
+                  </p>
+                  {/* <p>{`${player.score.toString().bold()} points`}</p> */}
                 </div>
               </div>
             ))}
@@ -49,7 +54,7 @@ class Ranking extends React.Component {
             data-testid="btn-go-home"
             className="green-btn btn"
           >
-            Home
+            PLAY AGAIN
           </button>
         </div>
       </div>

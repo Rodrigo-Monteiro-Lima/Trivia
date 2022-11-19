@@ -51,9 +51,9 @@ input {
   cursor: pointer;
   font-family: Epilogue , sans-serif;
   font-size: 16px;
-  font-style: normal;
   font-weight: 700;
   height: 45px;
+  letter-spacing: 0.12em;
   width: 519px;
 }
 

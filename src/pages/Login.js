@@ -64,7 +64,7 @@ class Login extends Component {
               value={ name }
               id="name"
               name="name"
-              placeholder="Nome"
+              placeholder="Name"
             />
           </label>
           <label htmlFor="email">
@@ -85,7 +85,7 @@ class Login extends Component {
             onClick={ this.playButton }
             className="start-btn"
           >
-            Play
+            PLAY
           </button>
           <button
             type="button"
@@ -93,7 +93,7 @@ class Login extends Component {
             onClick={ () => history.push('/settings') }
             className="start-btn config"
           >
-            Configurações
+            SETTINGS
           </button>
         </form>
       </div>

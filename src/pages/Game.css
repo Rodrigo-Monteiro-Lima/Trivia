@@ -1,6 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/verdana-pro-cond') ;
 
-
 .game-container {
   background-clip: border-box;
   background-image: url('../assets/background-game.png');
@@ -11,8 +10,9 @@
 }
 
 .correct {
-  border: 3px solid rgb(6, 240, 15);
+  border: 1px solid #2fc18c;
   border-radius: 100px;
+  box-shadow: 0 0 15px #2fc18c , 0 0 2px #2fc18c;
   color: black;
   cursor: pointer;
   font-family: Epilogue , sans-serif;
@@ -30,8 +30,9 @@
 } */
 
 .wrong {
-  border: 3px solid red;
+  border: 1px solid red;
   border-radius: 100px;
+  box-shadow: 0 0 13px red;
   color: black;
   cursor: pointer;
   font-family: Epilogue , sans-serif;
@@ -44,6 +45,9 @@
   width: 519px;
 }
 
+/* mix-blend-mode: multiply; */
+
+/* filter: blur(4px); */
 .question-container {
   align-items: center;
   background: white;

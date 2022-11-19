@@ -61,13 +61,18 @@ class Feedback extends Component {
               className="result-text"
             >
               { assertions > 2
-                ? 'Well Done!' : 'Could be better...' }
+                ? 'WELL DONE!' : 'COULD BE BETTER...' }
             </h1>
-            <h3 data-testid="feedback-total-question">
-              { `You got ${assertions} ${assertions > 1
-                ? 'questions' : 'question'} right`}
-            </h3>
-            <h3 data-testid="feedback-total-score">{ `Total of ${score} points` }</h3>
+            <div className="feeback-details">
+              <h3
+                className="feeback-details"
+                data-testid="feedback-total-question"
+              >
+                { `You got ${assertions} ${assertions > 1
+                  ? 'questions' : 'question'} right!`}
+              </h3>
+              <h3 data-testid="feedback-total-score">{ `Total of ${score} points` }</h3>
+            </div>
           </div>
           <div className="button-container">
             <button
@@ -76,7 +81,7 @@ class Feedback extends Component {
               onClick={ () => history.push('/ranking') }
               className="blue-btn"
             >
-              Ranking
+              RANKING
             </button>
             <button
               type="button"
@@ -84,7 +89,7 @@ class Feedback extends Component {
               onClick={ () => this.handleClick() }
               className="again-btn"
             >
-              Play Again
+              PLAY AGAIN
             </button>
           </div>
         </main>
