@@ -24,9 +24,11 @@ class Game extends React.Component {
   }
 
   async componentDidMount() {
-    const { fecthAPI, history } = this.props;
+    const { fecthAPI, history, settings } = this.props;
     const token = localStorage.getItem('token');
-    const questions = await getQuestions(token);
+    const questions = await getQuestions(token, settings);
+    console.log(settings);
+    console.log(questions);
     this.seconds();
     if (questions.response_code !== 0) {
       localStorage.removeItem('token');
@@ -103,7 +105,13 @@ class Game extends React.Component {
     // const { fetching } = this.props;
     const { selectedAnswer, history } = this.props;
     const { round, questions, fetching, seconds, disabled } = this.state;
-    if (fetching) return <div className="loader-container"><div className="loader">Loading...</div></div>;
+    if (fetching) {
+      return (
+        <div className="loader-container">
+          <div className="loader">Loading...</div>
+        </div>
+      );
+    }
     // if (error) return this.invalidToken();
     return (
       <div className="game-container">
@@ -147,11 +155,13 @@ Game.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   selectedAnswer: PropTypes.bool.isRequired,
+  settings: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ player }) => ({
+const mapStateToProps = ({ player, token }) => ({
   questions: player.questions,
   selectedAnswer: player.selectedAnswer,
+  settings: token.settings,
 });
 
 const mapDispatchToProps = (dispatch) => ({

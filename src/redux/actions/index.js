@@ -12,6 +12,12 @@ export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 export const NEW_GAME = 'NEW_GAME';
 export const TIME_OUT = 'TIME_OUT';
 export const HELP = 'HELP';
+export const SETTINGS = 'SETTINGS';
+
+export const setSettings = (settings) => ({
+  type: SETTINGS,
+  settings,
+});
 
 export const deleteQuestion = () => ({
   type: HELP,
