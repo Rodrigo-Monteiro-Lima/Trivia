@@ -133,7 +133,7 @@ class Questions extends Component {
                     onClick={ () => removeQuestion() }
                     disabled={ help }
                   >
-                    Excluir Uma
+                    HELP
                   </button>)}
             </div>
           </div>

@@ -11,7 +11,7 @@ class Settings extends Component {
           <h1
             data-testid="settings-title"
           >
-            Configurações
+            SETTINGS
           </h1>
           <select name="" id="" placeholder="Category" aria-label="select category">
             <option value="" disabled selected>Category</option>
