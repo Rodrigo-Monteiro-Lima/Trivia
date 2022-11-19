@@ -2,8 +2,14 @@ header {
   align-items: center;
   background: white;
   display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   height: 113px;
   justify-content: flex-end;
+  letter-spacing: 0.12em;
+  list-style: 150%;
 
   /* position: absolute; */
   top: 0;

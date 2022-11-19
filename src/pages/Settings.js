@@ -27,7 +27,7 @@ class Settings extends Component {
             className="green-btn button"
 
           >
-            Jogar
+            PLAY
           </button>
         </div>
       </div>

@@ -30,7 +30,8 @@ class Header extends React.Component {
           </div>
 
           <p data-testid="header-score" className="score">
-            {`Pontos: ${score}`}
+            Pontos:&nbsp;
+            <b>{score}</b>
           </p>
 
           <button
