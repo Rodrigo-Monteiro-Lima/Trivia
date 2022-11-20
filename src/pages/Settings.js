@@ -139,7 +139,7 @@ class Settings extends Component {
             className="green-btn button"
             // onClick={ (e) => e.preventDefault() }
           >
-            Play
+            PLAY
           </button>
         </form>
       </div>

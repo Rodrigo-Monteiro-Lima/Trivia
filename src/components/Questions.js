@@ -80,6 +80,7 @@ class Questions extends Component {
             <div className="timerContainer">
               <img src={ timerIcon } alt="timer icon" />
               <p className="timer">
+                &nbsp;&nbsp;
                 {`Timer: ${seconds}s`}
               </p>
             </div>
@@ -125,15 +126,16 @@ class Questions extends Component {
                 >
                   NEXT
                 </button>)
-                : (
-                  <button
-                    type="button"
-                    className="delete-btn"
-                    onClick={ () => removeQuestion() }
-                    disabled={ help }
-                  >
-                    HELP
-                  </button>)}
+                : !help
+                  && (
+                    <button
+                      type="button"
+                      className="delete-btn"
+                      onClick={ () => removeQuestion() }
+                      disabled={ help }
+                    >
+                      HELP
+                    </button>)}
             </div>
           </div>
         </div>
