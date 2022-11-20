@@ -1,9 +1,39 @@
 import React, { Component } from 'react';
-import './Settings.css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import logo from '../assets/logo.png';
+import { setSettings, newGame } from '../redux/actions';
+import './Settings.css';
 
 class Settings extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      type: '',
+      difficulty: '',
+      category: '',
+    };
+  }
+
+  handleSettings = () => {
+    const { type, category, difficulty } = this.state;
+    const { history, settings, playAgain } = this.props;
+    const url = `${category}${difficulty}${type}`;
+    playAgain();
+    settings(url);
+    history.push('/');
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
   render() {
+    const { difficulty, type, category } = this.state;
     return (
       <div className="settings-container">
         <div className="settings-main-container">
@@ -13,19 +43,81 @@ class Settings extends Component {
           >
             SETTINGS
           </h1>
-          <select name="" id="" placeholder="Category" aria-label="select category">
-            <option value="" disabled selected>Category</option>
+          <select
+            name="category"
+            id="category"
+            value={ category }
+            placeholder="Category"
+            aria-label="select category"
+            onChange={ this.handleChange }
+          >
+            <option value="">Any Category</option>
+            <option value="&category=9">General Knowledge</option>
+            <option value="&category=10">Entertainment: Books</option>
+            <option value="&category=11">Entertainment: Film</option>
+            <option value="&category=12">Entertainment: Music</option>
+            <option value="&category=13">Entertainment: Musicals & Theatres</option>
+            <option value="&category=14">Entertainment: Television</option>
+            <option value="&category=15">Entertainment: Video Games</option>
+            <option value="&category=16">Entertainment: Board Games</option>
+            <option value="&category=17">Science & Nature</option>
+            <option value="&category=18">Science: Computers</option>
+            <option value="&category=19">Science: Mathematics</option>
+            <option value="&category=20">Mythology</option>
+            <option value="&category=21">Sports</option>
+            <option value="&category=22">Geography</option>
+            <option value="&category=23">History</option>
+            <option value="&category=24">Politics</option>
+            <option value="&category=25">Art</option>
+            <option value="&category=26">Celebrities</option>
+            <option value="&category=27">Animals</option>
+            <option value="&category=28">Vehicles</option>
+            <option value="&category=29">Entertainment: Comics</option>
+            <option value="&category=30">Science: Gadgets</option>
+            <option value="&category=31">Entertainment: Japanese Anime & Manga</option>
+            <option value="&category=32">Entertainment: Cartoon & Animations</option>
           </select>
-          <select name="" id="" placeholder="Difficulty" aria-label="select difficulty">
-            <option value="" disabled selected>Difficulty</option>
+          <select
+            name="difficulty"
+            id="difficulty"
+            value={ difficulty }
+            placeholder="Difficulty"
+            aria-label="select difficulty"
+            onChange={ this.handleChange }
+          >
+            <option value="">Any Difficulty</option>
+            <option value="&difficulty=easy">Easy</option>
+            <option value="&difficulty=medium">Medium</option>
+            <option value="&difficulty=hard">Hard</option>
           </select>
-          <select name="" id="" placeholder="Type" aria-label="select type">
-            <option value="" disabled selected>Type</option>
+          <select
+            name="type"
+            id="type"
+            value={ type }
+            placeholder="Type"
+            aria-label="select type"
+            onChange={ this.handleChange }
+          >
+            <option value="">Any Type</option>
+            <option value="&type=boolean">True / False</option>
+            <option value="&type=multiple">Multiple Choice</option>
           </select>
+          {/* <select
+            name="language"
+            id="language"
+            onChange={ this.handleChange }
+            value={ language }
+          >
+            <option value="en-GB">{this.handleFetch('English')}</option>
+            <option value="es-ES">Spanish</option>
+            <option value="it-IT">Italian</option>
+            <option value="ja-JP">Japonese</option>
+            <option value="pt-BR">Portuguese</option>
+          </select> */}
           <button
             type="button"
             className="green-btn button"
-
+            onClick={ () => this.handleSettings() }
           >
             PLAY
           </button>
@@ -35,4 +127,17 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+Settings.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  settings: PropTypes.func.isRequired,
+  playAgain: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  settings: (url) => dispatch(setSettings(url)),
+  playAgain: () => dispatch(newGame()),
+});
+
+export default connect(null, mapDispatchToProps)(Settings);

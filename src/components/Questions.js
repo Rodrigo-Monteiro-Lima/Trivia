@@ -43,7 +43,7 @@ class Questions extends Component {
     const answersArr = [...wrongAnwswers, rightAnswer];
     const randomAnswers = answersArr.sort(() => (Math.random()
     > dotFive ? 1 : minusOne));
-    const color = ['#f9ba18', '#00D5E2', 'green', 'pink', 'blueviolet'];
+    const color = ['#f9ba18', '#00D5E2', 'green', 'darkolivegreen', 'blueviolet'];
     const four = 4;
     const bg = color[Math.floor(Math.random() * four)];
     this.setState({
@@ -59,7 +59,6 @@ class Questions extends Component {
       onSelectQuestion,
       selectedAnswer, disabled, seconds,
       handleNext, help, removeQuestion } = this.props;
-    console.log(questionHelp, orderedAnswer);
     const thisRound = questions[index];
     const rightAnswer = thisRound.correct_answer;
     return (
@@ -81,6 +80,7 @@ class Questions extends Component {
             <div className="timerContainer">
               <img src={ timerIcon } alt="timer icon" />
               <p className="timer">
+                &nbsp;&nbsp;
                 {`Timer: ${seconds}s`}
               </p>
             </div>
