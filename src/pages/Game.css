@@ -12,18 +12,22 @@
 }
 
 .correct {
+  align-items: center;
   border: 1px solid #2fc18c;
   border-radius: 100px;
   box-shadow: 0 0 15px #2fc18c , 0 0 2px #2fc18c;
   color: black;
   cursor: pointer;
+  display: flex;
   font-family: Epilogue , sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   height: 64px;
+  justify-content: center;
   line-height: 150%;
   margin-bottom: 1rem;
+  position: relative;
   width: 519px;
 }
 
@@ -32,18 +36,22 @@
 } */
 
 .wrong {
+  align-items: center;
   border: 1px solid red;
   border-radius: 100px;
   box-shadow: 0 0 13px red;
   color: black;
   cursor: pointer;
+  display: flex;
   font-family: Epilogue , sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   height: 64px;
+  justify-content: center;
   line-height: 150%;
   margin-bottom: 1rem;
+  position: relative;
   width: 519px;
 }
 
@@ -107,13 +115,13 @@
   width: 1174px;
 }
 
-.logo {
+/* .logo {
   left: 239px;
   position: absolute;
   top: -200px;
   width: 15%;
   z-index: 10;
-}
+} */
 
 .answer-options {
   height: 365px;
@@ -125,18 +133,23 @@
 }
 
 .option {
+  align-items: center;
   background: white;
   border: 1px solid white;
   border-radius: 100px;
   color: black;
   cursor: pointer;
+  display: flex;
   font-family: Epilogue , sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   height: 64px;
+  justify-content: space-evenly;
   line-height: 150%;
   margin-bottom: 1rem;
+  position: relative;
+  text-align: center;
   width: 519px;
 }
 
@@ -266,3 +279,11 @@
   }
 }
 
+.opt {
+  border-radius: 50%;
+  justify-self: center;
+  left: 0;
+  margin-left: 1.5rem;
+  position: absolute;
+  transition: 0.3s ease-in-out;
+}

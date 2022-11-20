@@ -1,5 +1,4 @@
 body, html {
-  align-items: center;
   background-image: url('../background.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,9 +59,9 @@ input {
   width: 519px;
 }
 
-.green-btn :before {
-  content: '';
-}
+/* .green-btn :before {
+  content: url('');
+} */
 
 .config {
   background-color: grey;
@@ -76,7 +75,7 @@ button:hover {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
+  min-height: 100vh;
   width: 100%;
 }

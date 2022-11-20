@@ -50,3 +50,18 @@ header {
   border: none;
   cursor: pointer;
 }
+
+.header-image {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  width: 50%;
+}
+
+.logo {
+  bottom: -90%;
+  position: absolute;
+  width: 28%;
+
+}

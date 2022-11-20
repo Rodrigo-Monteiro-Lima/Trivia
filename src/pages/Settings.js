@@ -21,13 +21,15 @@ class Settings extends Component {
     e.preventDefault();
     const { type, category, difficulty, amount } = this.state;
     const { history, settings, playAgain } = this.props;
+    const five = 5;
     const url = `${category}${difficulty}${type}`;
-    console.log(amount);
-    if (amount <= 50 || amount >= 5) {
-      playAgain();
+    playAgain();
+    if (amount === '') {
+      settings(url, five);
+    } else {
       settings(url, amount);
-      history.push('/');
     }
+    history.push('/');
   };
 
   handleChange = ({ target }) => {
@@ -60,7 +62,7 @@ class Settings extends Component {
             onChange={ this.handleChange }
             min="5"
             max="50"
-            required
+            // required
             placeholder="Number of questions"
           />
           <select

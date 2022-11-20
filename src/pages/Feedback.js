@@ -40,7 +40,7 @@ class Feedback extends Component {
   };
 
   render() {
-    const { assertions, score, history } = this.props;
+    const { assertions, score, history, amount } = this.props;
     const { image } = this.state;
     return (
       <div className="feedback-main-container">
@@ -60,7 +60,7 @@ class Feedback extends Component {
                 ? '#2fc18c' : '#ea5d5d'}` } }
               className="result-text"
             >
-              { assertions > 2
+              { assertions > parseInt((Number(amount) / 2), 10)
                 ? 'WELL DONE!' : 'COULD BE BETTER...' }
             </h1>
             <div className="feeback-details">
@@ -109,13 +109,15 @@ Feedback.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   playAgain: PropTypes.func.isRequired,
+  amount: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ player }) => ({
+const mapStateToProps = ({ player, token }) => ({
   assertions: player.assertions,
   score: player.score,
   name: player.name,
   gravatarEmail: player.gravatarEmail,
+  amount: token.amount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

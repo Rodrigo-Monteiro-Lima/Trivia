@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteQuestion } from '../redux/actions';
-import logo from '../logo trivia.png';
+// import logo from '../logo trivia.png';
 import timerIcon from '../assets/timerIcon.svg';
+import a from '../assets/a.svg';
+import b from '../assets/b.svg';
+import c from '../assets/c.svg';
+import d from '../assets/squareD.svg';
+import v from '../assets/greenV.svg';
+import x from '../assets/redX.svg';
 
 class Questions extends Component {
   constructor() {
@@ -61,9 +67,10 @@ class Questions extends Component {
       handleNext, help, removeQuestion } = this.props;
     const thisRound = questions[index];
     const rightAnswer = thisRound.correct_answer;
+    const opt = [a, b, c, d];
     return (
       <div className="main-container">
-        <img src={ logo } alt="logo" className="logo" />
+        {/* <img src={ logo } alt="logo" className="logo" /> */}
         <div className="questions-answer-container">
           <div className="question-container">
             <h2
@@ -101,6 +108,11 @@ class Questions extends Component {
                         && help ? 'hide' : ''}` }
                       onClick={ () => onSelectQuestion(answer) }
                     >
+                      <img
+                        src={ selectedAnswer && rightAnswer !== answer ? x : opt[i] }
+                        alt=""
+                        className="opt"
+                      />
                       {decodeURIComponent(answer)}
                     </button>)
                   : (
@@ -112,6 +124,11 @@ class Questions extends Component {
                       className={ `${selectedAnswer ? 'correct' : 'option'}` }
                       onClick={ () => onSelectQuestion(answer) }
                     >
+                      <img
+                        src={ selectedAnswer && rightAnswer === answer ? v : opt[i] }
+                        alt=""
+                        className="opt"
+                      />
                       {decodeURIComponent(answer)}
                     </button>)
               ))}

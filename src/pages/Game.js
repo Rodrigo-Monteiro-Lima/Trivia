@@ -159,7 +159,7 @@ Game.propTypes = {
   }).isRequired,
   selectedAnswer: PropTypes.bool.isRequired,
   settings: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ player, token }) => ({
