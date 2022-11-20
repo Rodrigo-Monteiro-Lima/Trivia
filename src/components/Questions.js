@@ -58,13 +58,19 @@ class Questions extends Component {
     });
   };
 
+  handleBtnNext = () => {
+    const { handleNext } = this.props;
+    this.setState({ questionHelp: '' });
+    handleNext();
+  };
+
   render() {
     const { orderedAnswer, questionHelp, background } = this.state;
     const { questions,
       index,
       onSelectQuestion,
       selectedAnswer, disabled, seconds,
-      handleNext, help, removeQuestion } = this.props;
+      help, removeQuestion } = this.props;
     const thisRound = questions[index];
     const rightAnswer = thisRound.correct_answer;
     const opt = [a, b, c, d];
@@ -108,11 +114,11 @@ class Questions extends Component {
                         && help ? 'hide' : ''}` }
                       onClick={ () => onSelectQuestion(answer) }
                     >
-                      {/* <img
+                      <img
                         src={ selectedAnswer && rightAnswer !== answer ? x : opt[i] }
                         alt=""
                         className="opt"
-                      /> */}
+                      />
                       {decodeURIComponent(answer)}
                     </button>)
                   : (
@@ -124,11 +130,11 @@ class Questions extends Component {
                       className={ `${selectedAnswer ? 'correct' : 'option'}` }
                       onClick={ () => onSelectQuestion(answer) }
                     >
-                      {/* <img
+                      <img
                         src={ selectedAnswer && rightAnswer === answer ? v : opt[i] }
                         alt=""
                         className="opt"
-                      /> */}
+                      />
                       {decodeURIComponent(answer)}
                     </button>)
               ))}
@@ -139,7 +145,7 @@ class Questions extends Component {
                   type="button"
                   data-testid="btn-next"
                   className="green-btn"
-                  onClick={ () => handleNext() }
+                  onClick={ () => this.handleBtnNext() }
                 >
                   NEXT
                 </button>)
