@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteQuestion } from '../redux/actions';
-// import logo from '../logo trivia.png';
+import logo from '../logo trivia.png';
 import timerIcon from '../assets/timerIcon.svg';
 import a from '../assets/a.svg';
 import b from '../assets/b.svg';
@@ -70,9 +70,9 @@ class Questions extends Component {
     const opt = [a, b, c, d];
     return (
       <div className="main-container">
-        {/* <img src={ logo } alt="logo" className="logo" /> */}
         <div className="questions-answer-container">
           <div className="question-container">
+            <img src={ logo } alt="logo" className="logo" />
             <h2
               data-testid="question-category"
               className="category"

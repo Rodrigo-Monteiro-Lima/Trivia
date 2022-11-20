@@ -1,9 +1,10 @@
 .settings-container {
   align-items: center;
   background-image: url('../assets/background-ranking.png');
+  background-size: cover;
   display: flex;
-  height: 100vh;
   justify-content: center;
+  min-height: 100vh;
   width: 100%;
 }
 

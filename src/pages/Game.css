@@ -112,16 +112,18 @@
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  width: 1174px;
+  margin-top: 120px;
+  width: 95%;
 }
 
-/* .logo {
-  left: 239px;
+.logo {
+
+  /* left: 239px; */
   position: absolute;
-  top: -200px;
-  width: 15%;
+  top: -255px;
+  width: 197px;
   z-index: 10;
-} */
+}
 
 .answer-options {
   height: 365px;
@@ -154,10 +156,11 @@
 }
 
 .timerContainer {
-  bottom: 0;
+  bottom: 5px;
   display: flex;
   flex-wrap: nowrap;
-  line-height: 10%;
+
+  /* line-height: 15%; */
   position: absolute;
 
 }
@@ -206,6 +209,7 @@
   height: 320px;
   justify-content: center;
   margin: 0;
+  margin-bottom: 0.3rem;
 }
 
 .loader-container {
@@ -283,7 +287,7 @@
   border-radius: 50%;
   justify-self: center;
   left: 0;
-  margin-left: 1.5rem;
+  margin-left: 0.55rem;
   position: absolute;
   transition: 0.3s ease-in-out;
 }

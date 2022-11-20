@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Header.css';
 import configIcon from '../assets/config.svg';
-import logo from '../logo trivia.png';
+// import logo from '../logo trivia.png';
 // import starIcon from '../assets/star.svg';
 
 class Header extends React.Component {
@@ -17,9 +17,9 @@ class Header extends React.Component {
 
     return (
       <header>
-        <div className="header-image">
+        {/* <div className="header-image">
           <img src={ logo } alt="logo" className="logo" />
-        </div>
+        </div> */}
         <div className="header-container">
           <div className="player">
             <img

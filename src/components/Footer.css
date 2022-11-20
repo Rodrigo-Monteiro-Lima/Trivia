@@ -1,7 +1,8 @@
 footer {
   background: #3c1b7a;
   bottom: 0;
-  height: 146px;
+  height: 20%;
+  min-height: 250px;
   position: absolute;
   width: 100%;
   z-index: 1;
