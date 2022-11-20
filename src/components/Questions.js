@@ -108,11 +108,11 @@ class Questions extends Component {
                         && help ? 'hide' : ''}` }
                       onClick={ () => onSelectQuestion(answer) }
                     >
-                      <img
+                      {/* <img
                         src={ selectedAnswer && rightAnswer !== answer ? x : opt[i] }
                         alt=""
                         className="opt"
-                      />
+                      /> */}
                       {decodeURIComponent(answer)}
                     </button>)
                   : (
@@ -124,11 +124,11 @@ class Questions extends Component {
                       className={ `${selectedAnswer ? 'correct' : 'option'}` }
                       onClick={ () => onSelectQuestion(answer) }
                     >
-                      <img
+                      {/* <img
                         src={ selectedAnswer && rightAnswer === answer ? v : opt[i] }
                         alt=""
                         className="opt"
-                      />
+                      /> */}
                       {decodeURIComponent(answer)}
                     </button>)
               ))}
@@ -149,7 +149,6 @@ class Questions extends Component {
                       type="button"
                       className="delete-btn"
                       onClick={ () => removeQuestion() }
-                      disabled={ help }
                     >
                       HELP
                     </button>)}
