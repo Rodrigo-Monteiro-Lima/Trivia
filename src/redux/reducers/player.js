@@ -46,6 +46,7 @@ const player = (state = initialState, action) => {
       ...state,
       name: action.name,
       gravatarEmail: action.email,
+      selectedAnswer: false,
     };
   case CHECK_ANSWER:
     return {

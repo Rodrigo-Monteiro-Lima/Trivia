@@ -35,7 +35,7 @@
   text-transform: uppercase;
 }
 
-.settings-main-container select {
+.settings-main-container select, .settings-main-container input {
   background: white;
   border: 1px solid #e1e5eb;
   border-radius: 0;

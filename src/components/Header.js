@@ -8,7 +8,7 @@ import configIcon from '../assets/config.svg';
 
 class Header extends React.Component {
   render() {
-    const { name, gravatarEmail, score, history } = this.props;
+    const { name, gravatarEmail, score, history, handleConfig } = this.props;
 
     const userEmail = gravatarEmail;
     const emailHash = md5(userEmail).toString();
@@ -36,7 +36,10 @@ class Header extends React.Component {
           <button
             type="button"
             data-testid="btn-settings"
-            onClick={ () => history.push('/settings') }
+            onClick={ () => {
+              handleConfig();
+              history.push('/settings');
+            } }
             className="btn-config"
           >
             <img src={ configIcon } alt="config icon" />
@@ -54,6 +57,7 @@ Header.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  handleConfig: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ player }) => ({

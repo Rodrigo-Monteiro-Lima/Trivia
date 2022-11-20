@@ -24,11 +24,9 @@ class Game extends React.Component {
   }
 
   async componentDidMount() {
-    const { fecthAPI, history, settings } = this.props;
+    const { fecthAPI, history, settings, amount } = this.props;
     const token = localStorage.getItem('token');
-    const questions = await getQuestions(token, settings);
-    console.log(settings);
-    console.log(questions);
+    const questions = await getQuestions(token, settings, amount);
     this.seconds();
     if (questions.response_code !== 0) {
       localStorage.removeItem('token');
@@ -60,6 +58,11 @@ class Game extends React.Component {
     }
     next();
     this.seconds();
+  };
+
+  handleConfig = () => {
+    clearInterval(this.timerID);
+    clearTimeout(this.timeoutID);
   };
 
   onSelectQuestion = (option) => {
@@ -115,7 +118,7 @@ class Game extends React.Component {
     // if (error) return this.invalidToken();
     return (
       <div className="game-container">
-        <Header history={ history } />
+        <Header history={ history } handleConfig={ this.handleConfig } />
         {!fetching && questions.length !== 0
         && (
           <>
@@ -156,12 +159,14 @@ Game.propTypes = {
   }).isRequired,
   selectedAnswer: PropTypes.bool.isRequired,
   settings: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = ({ player, token }) => ({
   questions: player.questions,
   selectedAnswer: player.selectedAnswer,
   settings: token.settings,
+  amount: token.amount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,6 +3,7 @@ import { SUCCESS_REQUEST_TOKEN, SETTINGS } from '../actions';
 const initialState = {
   token: '',
   settings: '',
+  amount: '5',
 };
 
 const token = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const token = (state = initialState, action) => {
     return {
       ...state,
       settings: action.settings,
+      amount: action.amount,
     };
   default:
     return state;

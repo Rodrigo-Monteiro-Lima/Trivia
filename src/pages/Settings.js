@@ -13,16 +13,21 @@ class Settings extends Component {
       type: '',
       difficulty: '',
       category: '',
+      amount: '',
     };
   }
 
-  handleSettings = () => {
-    const { type, category, difficulty } = this.state;
+  handleSettings = (e) => {
+    e.preventDefault();
+    const { type, category, difficulty, amount } = this.state;
     const { history, settings, playAgain } = this.props;
     const url = `${category}${difficulty}${type}`;
-    playAgain();
-    settings(url);
-    history.push('/');
+    console.log(amount);
+    if (amount <= 50 || amount >= 5) {
+      playAgain();
+      settings(url, amount);
+      history.push('/');
+    }
   };
 
   handleChange = ({ target }) => {
@@ -33,16 +38,31 @@ class Settings extends Component {
   };
 
   render() {
-    const { difficulty, type, category } = this.state;
+    const { difficulty, type, category, amount } = this.state;
     return (
       <div className="settings-container">
-        <div className="settings-main-container">
+        <form
+          onSubmit={ (e) => this.handleSettings(e) }
+          className="settings-main-container"
+        >
           <img src={ logo } alt="" className="logo-ranking" />
           <h1
             data-testid="settings-title"
           >
             SETTINGS
           </h1>
+          <input
+            className="number-questions"
+            type="number"
+            name="amount"
+            id="amount"
+            value={ amount }
+            onChange={ this.handleChange }
+            min="5"
+            max="50"
+            required
+            placeholder="Number of questions"
+          />
           <select
             name="category"
             id="category"
@@ -115,13 +135,13 @@ class Settings extends Component {
             <option value="pt-BR">Portuguese</option>
           </select> */}
           <button
-            type="button"
+            type="submit"
             className="green-btn button"
-            onClick={ () => this.handleSettings() }
+            // onClick={ (e) => e.preventDefault() }
           >
             Play
           </button>
-        </div>
+        </form>
       </div>
     );
   }
@@ -136,7 +156,7 @@ Settings.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  settings: (url) => dispatch(setSettings(url)),
+  settings: (url, amount) => dispatch(setSettings(url, amount)),
   playAgain: () => dispatch(newGame()),
 });
 

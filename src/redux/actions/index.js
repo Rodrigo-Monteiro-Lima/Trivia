@@ -14,9 +14,10 @@ export const TIME_OUT = 'TIME_OUT';
 export const HELP = 'HELP';
 export const SETTINGS = 'SETTINGS';
 
-export const setSettings = (settings) => ({
+export const setSettings = (settings, amount) => ({
   type: SETTINGS,
   settings,
+  amount,
 });
 
 export const deleteQuestion = () => ({
