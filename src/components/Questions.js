@@ -39,14 +39,14 @@ class Questions extends Component {
     const dotFive = 0.5;
     const minusOne = -1;
     const three = 3;
-    const wrongAnwswers = thisRound.incorrect_answers;
+    const wrongAnswers = thisRound.incorrect_answers;
     if (!help) {
-      const i = wrongAnwswers.length === three
+      const i = wrongAnswers.length === three
         ? Math.floor(Math.random() * three) : 0;
-      this.setState({ questionHelp: wrongAnwswers[i] });
+      this.setState({ questionHelp: wrongAnswers[i] });
     }
     const rightAnswer = thisRound.correct_answer;
-    const answersArr = [...wrongAnwswers, rightAnswer];
+    const answersArr = [...wrongAnswers, rightAnswer];
     const randomAnswers = answersArr.sort(() => (Math.random()
     > dotFive ? 1 : minusOne));
     const color = ['#f9ba18', '#00D5E2', 'green', 'darkolivegreen', 'blueviolet'];
