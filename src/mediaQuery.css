@@ -1,0 +1,343 @@
+@media screen and ( min-width : 768px ) and ( max-width : 1024px ) {
+
+  .container form {
+    width: 514px;
+  }
+
+  .container form input, .start-btn, .green-btn {
+    width: 419px;
+  }
+
+  .image-container img {
+    width: 35%;
+  }
+
+  .question-container {
+    width: 389px;
+  }
+
+  .category {
+    width: 363px;
+  }
+
+  .correct, .wrong, .option, .delete-btn {
+    width: 419px;
+  }
+
+  .buttons-container, .next-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    font-size: 20px;
+    width: 360px;
+  }
+
+  .logo {
+    width: 167px;
+  }
+
+}
+
+@media screen and ( min-width : 481px ) and ( max-width : 768px ) {
+
+  .container form {
+    width: 414px;
+  }
+
+  .container form input, .start-btn, .green-btn {
+    width: 319px;
+  }
+
+  .image-container img {
+    width: 35%;
+  }
+
+  .ranking-container {
+    width: 419px;
+  }
+
+  .player-ranking {
+    width: 319px;
+  }
+
+  .question-container {
+    width: 339px;
+  }
+
+  .category {
+    width: 313px;
+  }
+
+  .correct, .wrong, .option, .delete-btn {
+
+    /* height: 30px; */
+    width: 319px;
+  }
+
+  .buttons-container, .next-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    font-size: 16px;
+    width: 300px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .questions-answer-container {
+    flex-direction: column;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .header-container {
+    width: 100%;
+  }
+
+}
+
+@media screen and ( max-width : 926px ) {
+
+  .questions-answer-container {
+    flex-direction: column;
+    margin-top: 8rem;
+  }
+
+  .buttons-container {
+    height: 240px;
+  }
+
+  .question-container {
+    height: 220px;
+    margin-bottom: 2rem;
+  }
+
+  .text {
+    font-size: 18px;
+    width: 340px;
+  }
+
+  .opt {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media screen and ( max-width : 600px ) {
+
+  .ranking-container {
+    width: 399px;
+  }
+
+  .player-ranking {
+    width: 289px;
+  }
+
+  .btn {
+    width: 289px;
+  }
+
+  .feedback-container, .button-container {
+    width: 369px;
+  }
+
+  .player-feedback {
+    top: -110px;
+    width: 183px;
+  }
+
+  .trivia-logo {
+    width: 140px;
+  }
+
+  .result-text {
+    font-size: 28px;
+  }
+
+}
+
+@media screen and ( min-width : 320px ) and ( max-width : 480px ) {
+
+  .container form {
+    margin-bottom: 2rem;
+    width: 254px;
+  }
+
+  .container form input, .start-btn, .green-btn {
+    width: 169px;
+  }
+
+  .image-container img {
+    width: 25%;
+  }
+
+  .ranking-container {
+    width: 289px;
+  }
+
+  .player-ranking {
+    width: 229px;
+  }
+
+  .player-score {
+    gap: 3px;
+    min-width: 60px;
+  }
+
+  .player-info {
+    display: flex;
+    font-size: 14px;
+    gap: 3px;
+  }
+
+  .player-info img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .player-score p {
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+  }
+
+  .logo-ranking {
+    top: -70px;
+    width: 130px;
+  }
+
+  .feedback-container, .button-container {
+    width: 289px;
+  }
+
+  .player-feedback {
+    top: -100px;
+    width: 153px;
+  }
+
+  .trivia-logo {
+    width: 120px;
+  }
+
+  .result-text {
+    font-size: 22px;
+  }
+
+  .feedback-details {
+    font-size: 14px;
+  }
+
+  .question-container {
+    width: 300px;
+  }
+
+  .category {
+    width: 274px;
+  }
+
+  .correct, .wrong, .option, .delete-btn, .next {
+
+    /* height: 30px; */
+    width: 300px;
+  }
+
+  .buttons-container, .next-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    font-size: 16px;
+    width: 300px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+}
+
+@media screen and ( max-width : 320px ) {
+
+  .container form {
+    margin-bottom: 2rem;
+    width: 194px;
+  }
+
+  .container form input, .start-btn, .green-btn {
+    width: 119px;
+  }
+
+  .image-container img {
+    width: 25%;
+  }
+
+  .ranking-container {
+    height: 400px;
+    width: 249px;
+  }
+
+  .player-ranking {
+    width: 179px;
+  }
+
+  .logo-ranking {
+    top: -70px;
+    width: 110px;
+  }
+
+  .player-score:before {
+    content: '';
+  }
+
+  .player-score {
+    gap: 0;
+    min-width: 40px;
+  }
+
+  .player-score p {
+    align-items: center;
+    display: flex;
+    flex-flow: wrap column;
+    font-size: 13px;
+    gap: 0;
+  }
+
+  .feedback-container, .button-container {
+    width: 239px;
+  }
+
+  .player-feedback {
+    top: -80px;
+    width: 133px;
+  }
+
+  .trivia-logo {
+    margin-bottom: 7rem;
+    width: 100px;
+  }
+
+  .result-text {
+    font-size: 20px;
+  }
+
+  .feedback-details {
+    font-size: 12px;
+  }
+
+}

@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const token = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
   case SUCCESS_REQUEST_TOKEN:
     return {

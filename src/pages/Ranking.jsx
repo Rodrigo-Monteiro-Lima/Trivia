@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { newGame } from '../redux/actions';
 import './Ranking.css';
 import logo from '../assets/logo.png';
+import image from '../assets/background-ranking.png';
 
 class Ranking extends React.Component {
   state = { ranking: [] };
@@ -24,16 +25,15 @@ class Ranking extends React.Component {
 
   render() {
     const { ranking } = this.state;
-    console.log(ranking);
     return (
       <div className="ranking-main-container">
+        <img src={ image } alt="" className="bg-ranking" />
         <div className="ranking-container">
           <img src={ logo } alt="" className="logo-ranking" />
           <h1 data-testid="ranking-title">Ranking</h1>
           <div className="players-ranking-container">
             {ranking.map((player, i) => (
               <div key={ i } className="player-ranking">
-                {console.log(typeof player.score)}
                 <div data-testid={ `player-name-${i}` } className="player-info">
                   <img src={ player.gravatarImg } alt={ player.name } />
                   {player.name}
@@ -41,7 +41,7 @@ class Ranking extends React.Component {
                 <div data-testid={ `player-score-${i}` } className="player-score">
                   <p>
                     <b>{player.score}</b>
-                    &nbsp;points
+                    points
                   </p>
                   {/* <p>{`${player.score.toString().bold()} points`}</p> */}
                 </div>

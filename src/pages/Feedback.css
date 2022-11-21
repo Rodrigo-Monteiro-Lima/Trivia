@@ -87,14 +87,24 @@ main {
 }
 
 .feedback-main-container {
-  background-image: url('../assets/background-feedback.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+
+  /* background-image: url('../assets/background-feedback.png'); */
+
+  /* background-repeat: no-repeat; */
+
+  /* background-size: cover; */
   display: flex;
   justify-content: center;
   min-height: 100vh;
   z-index: -1;
 
+}
+
+.bg-feedback {
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
 }
 
 

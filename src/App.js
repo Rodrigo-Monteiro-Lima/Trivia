@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Settings from './pages/Settings';
 import Ranking from './pages/Ranking';
 import './App.css';
+import './mediaQuery.css';
 
 function App() {
   return (

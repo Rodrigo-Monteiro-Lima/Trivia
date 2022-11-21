@@ -2,13 +2,23 @@
 
 .ranking-main-container {
   align-items: center;
-  background-image: url('../assets//background-ranking.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+
+  /* background-image: url('../assets//background-ranking.png'); */
+
+  /* background-repeat: no-repeat; */
+
+  /* background-size: cover; */
   display: flex;
   justify-content: center;
   min-height: 100vh;
   width: 100%;
+}
+
+.bg-ranking {
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
 }
 
 .ranking-container {
@@ -115,4 +125,5 @@
 .player-score p {
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
 }

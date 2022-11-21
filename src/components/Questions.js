@@ -144,7 +144,7 @@ class Questions extends Component {
                 <button
                   type="button"
                   data-testid="btn-next"
-                  className="green-btn"
+                  className="green-btn next"
                   onClick={ () => this.handleBtnNext() }
                 >
                   NEXT

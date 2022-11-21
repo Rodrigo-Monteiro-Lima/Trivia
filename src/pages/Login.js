@@ -5,6 +5,7 @@ import getToken from '../services/tokenAPI';
 import { login } from '../redux/actions';
 import logo from '../logo trivia.png';
 import './Login.css';
+import image from '../background.png';
 
 class Login extends Component {
   constructor() {
@@ -52,6 +53,7 @@ class Login extends Component {
     const { history } = this.props;
     return (
       <div className="container">
+        <img src={ image } alt="" className="bg-login" />
         <div className="image-container">
           <img src={ logo } alt="logo" />
         </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
-// import Header from '../components/Header';
+import imageBg from '../assets/background-feedback.png';
 import { newGame } from '../redux/actions';
 import './Feedback.css';
 import logo from '../assets/logo trivia2.png';
@@ -30,7 +30,15 @@ class Feedback extends Component {
       localStorage.setItem('ranking', JSON.stringify([]));
     }
     const prevRanking = JSON.parse(localStorage.getItem('ranking'));
-    localStorage.setItem('ranking', JSON.stringify([...prevRanking, addPlayer]));
+    const findPrev = prevRanking.findIndex((rank) => rank.name === addPlayer.name
+      && rank.gravatarImg === addPlayer.gravatarImg);
+    const minus = -1;
+    if (findPrev > minus && addPlayer.score > prevRanking[findPrev].score) {
+      prevRanking[findPrev].score = addPlayer.score;
+      localStorage.setItem('ranking', JSON.stringify([...prevRanking]));
+    } else if (findPrev === minus) {
+      localStorage.setItem('ranking', JSON.stringify([...prevRanking, addPlayer]));
+    }
   }
 
   handleClick = () => {
@@ -45,6 +53,7 @@ class Feedback extends Component {
     return (
       <div className="feedback-main-container">
         {/* <Header /> */}
+        <img src={ imageBg } alt="" className="bg-feedback" />
         <main>
           <img src={ logo } alt="" className="trivia-logo" />
           <div className="feedback-container">
@@ -63,9 +72,8 @@ class Feedback extends Component {
               { assertions > parseInt((Number(amount) / 2), 10)
                 ? 'WELL DONE!' : 'COULD BE BETTER...' }
             </h1>
-            <div className="feeback-details">
+            <div className="feedback-details">
               <h3
-                className="feeback-details"
                 data-testid="feedback-total-question"
               >
                 { `You got ${assertions} ${assertions > 1
